@@ -3,7 +3,7 @@
 --
 
 SET foreign_key_checks = 0;
-DROP TABLE if exists students;
+DROP TABLE if exists ;
 SET foreign_key_checks = 1;
 
 --
@@ -21,6 +21,7 @@ CREATE TABLE `User`(
 );
 CREATE TABLE `Fridge`(
     `id` INT  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `UserId` INT  NOT NULL FOREGIN KEY,
     `Ingredient` VARCHAR(255) NOT NULL,
     `ExpirationDate` DATE NULL,
     `Category` VARCHAR(255) NOT NULL,
