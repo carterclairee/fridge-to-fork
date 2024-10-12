@@ -5,17 +5,50 @@ const mysql = require("mysql");
 // For protecting endpoints...modify depending on what Emelie calls guard
 var userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 
+// Full url: http://localhost:4000/api/index
+
+// Helper function to get fridge contents the same way each time; function takes the user's id from the guard as parameter
+async function getFridgeContents(user_id) {
+  try {
+    const result = await db(
+      `SELECT f.*, u.FirstName, u.Preference FROM Fridge as f LEFT JOIN User as u on f.UserId = u.id WHERE f.UserId = ${user_id};`
+    );
+    return result;
+  } catch (error) {
+    throw new Error("Error fetching fridge contents: " + error.message);
+  }
+}
+
 // Home/login view: likely all endpoints will come from users.js
 // Profile view: likely all endpoints will come from users.js 
 
 // Fridge view
-  // POST ingredients
-  // GET ingredients (join USERS for user's first name)
-  // DELETE ingredients
-  // POST ingredients to edit quantity
+// POST ingredients
+router.post("/", userShouldBeLoggedIn, async (req, res) => {
+  const { Ingredient, ExpirationDate, Category, Quantity, Unit } = req.body;
+
+  // req.user_id will come from guard
+  const user_id = req.user_id
+
+  try {await db(
+    `INSERT INTO Fridge (Ingredient, ExpirationDate, Category, Quantity, Unit) VALUES ('${Ingredient}', '${ExpirationDate}', '${Category}', '${Quantity}', '${Unit}', '${user_id}');`
+  );
+  
+  // Call helper function with user_id as parameter
+  const fridgeContents = await getFridgeContents(user_id);
+  res.status(201).send(fridgeContents);
+
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+// GET ingredients (join USERS for user's first name)
+// DELETE ingredients
+// POST ingredients to edit quantity
 
 // Recipe gallery view
-  // GET recipe cards from API (limit up to 20?), match based on fridge contents 
+// GET recipe cards from API (limit up to 20?), match based on fridge contents 
 
 
 
