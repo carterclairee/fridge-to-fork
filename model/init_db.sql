@@ -1,11 +1,4 @@
 --
--- Drop Tables
---
-
-SET foreign_key_checks = 0;
-DROP TABLE if exists ;
-SET foreign_key_checks = 1;
-
 --
 -- Create Tables
 --
@@ -21,11 +14,12 @@ CREATE TABLE `User`(
 );
 CREATE TABLE `Fridge`(
     `id` INT  NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `UserId` INT  NOT NULL FOREGIN KEY,
+    `UserId` INT  NOT NULL,
     `Ingredient` VARCHAR(255) NOT NULL,
     `ExpirationDate` DATE NULL,
     `Category` VARCHAR(255) NOT NULL,
     `Quantity` INT NOT NULL,
-    `Unit` VARCHAR(255) NOT NULL
+    `Unit` VARCHAR(255) NOT NULL,
+    FOREIGN KEY (`UserId`) REFERENCES `User`(`id`)
 );
 
