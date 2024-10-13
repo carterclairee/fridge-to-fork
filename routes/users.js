@@ -60,7 +60,7 @@ router.post("/login", async (req, res) => {
 
   try {
     const results = await db(
-      `SELECT * FROM users WHERE UserName = "${UserName}"`
+      `SELECT * FROM User WHERE UserName = "${UserName}"`
     );
     const user = results.data[0];
     if (user) {
