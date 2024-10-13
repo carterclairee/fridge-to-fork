@@ -20,6 +20,6 @@ CREATE TABLE `Fridge`(
     `Category` VARCHAR(255) NOT NULL,
     `Quantity` INT NOT NULL,
     `Unit` VARCHAR(255) NOT NULL,
-    FOREIGN KEY (`UserId`) REFERENCES `User`(`id`)
+    FOREIGN KEY (`UserId`) REFERENCES `User`(`id`)ON DELETE CASCADE
 );
 
