@@ -6,7 +6,7 @@ var userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 
 // Full url: http://localhost:4000/api/index
 
-// Helper function to get fridge contents the same way each time; function takes the user's id from the guard as parameter
+// Helper function to get fridge contents the same way each time; function takes the user's id as parameter
 // Joined with users to get user's first name and preferences
 async function getFridgeContents(user_id) {
   try {
@@ -58,6 +58,7 @@ router.get("/", userShouldBeLoggedIn, async (req, res) => {
 // DELETE ingredients by id
 router.delete("/:id", userShouldBeLoggedIn, async (req, res) => {
   const { id } = req.params;
+  const user_id = req.user_id;
 
   try {
     await db(
@@ -71,6 +72,20 @@ router.delete("/:id", userShouldBeLoggedIn, async (req, res) => {
 });
 
 // PUT ingredients to edit quantity
+router.put("/:id", userShouldBeLoggedIn, async (req, res) => {
+  const { id, Quantity } = req.params;
+  const user_id = req.user_id;
+
+  try {
+    await db(
+      `UPDATE Fridge SET Quantity = '${Quantity}' WHERE id = ${id};`
+    );
+    const fridgeContents = await getFridgeContents(user_id);
+    res.send(fridgeContents);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
 
 // Recipe gallery view
 // GET recipe cards from API (limit up to 20?), match based on fridge contents 
