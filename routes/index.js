@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const db = require("../model/helper");
-const mysql = require("mysql");
 // For protecting endpoints...modify depending on what Emelie calls guard
 var userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 
@@ -14,7 +13,7 @@ async function getFridgeContents(user_id) {
     const result = await db(
       `SELECT f.*, u.FirstName, u.Preference FROM Fridge as f LEFT JOIN User as u on f.UserId = u.id WHERE f.UserId = ${user_id};`
     );
-    return result;
+    return result.data;
   } catch (error) {
     throw new Error("Error fetching fridge contents: " + error.message);
   }
@@ -56,7 +55,21 @@ router.get("/", userShouldBeLoggedIn, async (req, res) => {
   }
 });
 
-// DELETE ingredients
+// DELETE ingredients by id
+router.delete("/:id", userShouldBeLoggedIn, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await db(
+      `DELETE FROM Fridge WHERE id = ${id};`
+    );
+    const fridgeContents = await getFridgeContents(user_id);
+    res.send(fridgeContents);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
 // PUT ingredients to edit quantity
 
 // Recipe gallery view
