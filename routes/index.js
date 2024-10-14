@@ -88,7 +88,7 @@ router.put("/:id", userShouldBeLoggedIn, async (req, res) => {
 });
 
 // Recipe gallery view
-// GET recipe cards from API (limit up to 20?), match based on fridge contents 
+// GET recipe cards from API (limit up to 10?), match based on fridge contents 
 
 
 
