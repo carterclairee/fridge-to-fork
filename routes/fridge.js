@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 const db = require("../model/helper");
-// For protecting endpoints...modify depending on what Emelie calls guard
+// For protecting endpoints
 var userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 
-// Full url: http://localhost:4000/api/index
+// Full url: http://localhost:4000/api/fridge
 
 // Helper function to get fridge contents the same way each time; function takes the user's id as parameter
 // Joined with users to get user's first name and preferences
@@ -31,7 +31,7 @@ router.post("/", userShouldBeLoggedIn, async (req, res) => {
   const user_id = req.user_id
 
   try {await db(
-    `INSERT INTO Fridge (Ingredient, ExpirationDate, Category, Quantity, Unit) VALUES ('${Ingredient}', '${ExpirationDate}', '${Category}', '${Quantity}', '${Unit}', '${user_id}');`
+    `INSERT INTO Fridge (Ingredient, ExpirationDate, Category, Quantity, Unit, UserId) VALUES ('${Ingredient}', ${ExpirationDate}, '${Category}', ${Quantity}, '${Unit}', '${user_id}');`
   );
 
   // Call helper function with user_id as parameter
@@ -73,12 +73,13 @@ router.delete("/:id", userShouldBeLoggedIn, async (req, res) => {
 
 // PUT ingredients to edit quantity
 router.put("/:id", userShouldBeLoggedIn, async (req, res) => {
-  const { id, Quantity } = req.params;
+  const { id } = req.params;
+  const { Quantity } = req.body;
   const user_id = req.user_id;
 
   try {
     await db(
-      `UPDATE Fridge SET Quantity = '${Quantity}' WHERE id = ${id};`
+      `UPDATE Fridge SET Quantity = ${Quantity} WHERE id = ${id};`
     );
     const fridgeContents = await getFridgeContents(user_id);
     res.send(fridgeContents);
@@ -90,6 +91,9 @@ router.put("/:id", userShouldBeLoggedIn, async (req, res) => {
 // Recipe gallery view
 // GET recipe cards from API (limit up to 10?), match based on fridge contents 
 
+// Once I figure out what the API expects, let Sofia know
 
 
 module.exports = router;
+
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE3MjczNzcyNTV9.zCweLrVDuV2JYYIx-5PsOxeDjL9pyuLKQBaYfq2ztS0
