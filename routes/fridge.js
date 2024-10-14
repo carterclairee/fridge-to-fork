@@ -90,10 +90,21 @@ router.put("/:id", userShouldBeLoggedIn, async (req, res) => {
 
 // Recipe gallery view
 // GET recipe cards from API (limit up to 10?), match based on fridge contents 
+// GET https://api.spoonacular.com/recipes/findByIngredients
+// https://spoonacular.com/food-api/docs#Search-Recipes-by-Ingredients
+// It looks like adding plus will trigger the ignorePantry. Maybe have a set number of those (like water, sugar, salt, pepper, oil?) each time?
 
-// Once I figure out what the API expects, let Sofia know
+router.get("/recommendations", userShouldBeLoggedIn, async (req, res) => {
+  // fetch to the api
+  // OPTION 1
+  const user = await db(`SELECT * FROM users WHERE id = ${req.user_id}`);
+  const restriction = user.data[0].restriction;
+  const ingredients = await db(`SELECT * FROM ingredients WHERE user_id = ${req.user_id}`);
+  const ingredientsList = ingredients.data.map(ingredient => ingredient.ingredient);
+  // OPTION 2
+  // make just one select with a join statement
+  // https://api.edamame.org/3/recipe?api_key=1f54bd990f1cdfb230adb312546d765d&ingredients={ingredients}&number=3&diet={restriction}
+})
 
 
 module.exports = router;
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE3MjczNzcyNTV9.zCweLrVDuV2JYYIx-5PsOxeDjL9pyuLKQBaYfq2ztS0
