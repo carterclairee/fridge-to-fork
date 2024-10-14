@@ -85,8 +85,51 @@ router.get("/profile", userShouldBeLoggedIn, (req, res) => {
     message: "Here is the PROTECTED data for user " + req.user_id,
   });
 });
+/*
+//change the preference
 
+router.patch("/preference", userShouldBeLoggedIn, async (req, res) => {
+  const { user_id, Preference } = req.body;
+  console.log("REQ.BODY", req.body);
 
+  try {
+    const result = await db(
+      `UPDATE User SET Preference = "${Preference}" WHERE id = ${user_id}`
+    );
 
+    if (result.affectedRows > 0) {
+      res.send({ message: "Preference updated successfully" });
+    } else {
+      throw new Error("User not found");
+    }
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+});
+
+//delete
+
+router.delete("/", userShouldBeLoggedIn, async (req, res) => {
+  const user_id = req.user_id; 
+
+  try {
+    const userCheck = await db(`SELECT * FROM User WHERE id = ${user_id}`);
+    if (userCheck.data.length === 0) {
+      throw new Error("User not found");
+    }
+
+    const result = await db(`DELETE FROM User WHERE id = ${user_id}`);
+
+    if (result.affectedRows > 0) {
+      res.send({ message: "User deleted successfully" });
+    } else {
+      throw new Error("User could not be deleted");
+    }
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+});
+
+*/
 
 module.exports = router;
