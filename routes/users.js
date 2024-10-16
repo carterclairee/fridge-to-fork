@@ -36,7 +36,7 @@ router.get("/", async (req, res) => {
 //post users
 // login for the first time 
 
-router.post("/", async (req, res) => {
+router.post("/register", async (req, res) => {
   const { UserName, Password, Email, FirstName, LastName, Preference } = req.body;
 
   try {
