@@ -88,7 +88,10 @@ router.put("/:id", userShouldBeLoggedIn, async (req, res) => {
   }
 });
 
-// Recipe gallery view
+// Recipe view
+
+// This may need to be 2 GET requests nested
+
 // GET recipe cards from API (limit up to 10?), match based on fridge contents 
 // GET https://api.spoonacular.com/recipes/findByIngredients
 // https://spoonacular.com/food-api/docs#Search-Recipes-by-Ingredients
@@ -105,6 +108,5 @@ router.get("/recommendations", userShouldBeLoggedIn, async (req, res) => {
   // make just one select with a join statement
   // https://api.edamame.org/3/recipe?api_key=1f54bd990f1cdfb230adb312546d765d&ingredients={ingredients}&number=3&diet={restriction}
 })
-
 
 module.exports = router;
