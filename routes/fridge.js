@@ -1,10 +1,15 @@
 var express = require('express');
 var router = express.Router();
 const db = require("../model/helper");
+// Require axios for api calls
+const axios = require('axios');
 // For protecting endpoints
 var userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 
 // Full url: http://localhost:4000/api/fridge
+
+// API Key
+const apiKey = "dbb4ce340e4d4777a5966302b1e6b98d";
 
 // Helper function to get fridge contents the same way each time; function takes the user's id as parameter
 // Joined with users to get user's first name and preferences
@@ -93,20 +98,78 @@ router.put("/:id", userShouldBeLoggedIn, async (req, res) => {
 // This may need to be 2 GET requests nested
 
 // GET recipe cards from API (limit up to 10?), match based on fridge contents 
-// GET https://api.spoonacular.com/recipes/findByIngredients
-// https://spoonacular.com/food-api/docs#Search-Recipes-by-Ingredients
+
 // It looks like adding plus will trigger the ignorePantry. Maybe have a set number of those (like water, sugar, salt, pepper, oil?) each time?
 
-router.get("/recommendations", userShouldBeLoggedIn, async (req, res) => {
-  // fetch to the api
-  // OPTION 1
-  const user = await db(`SELECT * FROM users WHERE id = ${req.user_id}`);
-  const restriction = user.data[0].restriction;
-  const ingredients = await db(`SELECT * FROM ingredients WHERE user_id = ${req.user_id}`);
-  const ingredientsList = ingredients.data.map(ingredient => ingredient.ingredient);
-  // OPTION 2
-  // make just one select with a join statement
-  // https://api.edamame.org/3/recipe?api_key=1f54bd990f1cdfb230adb312546d765d&ingredients={ingredients}&number=3&diet={restriction}
-})
+router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
+  const user_id = req.user_id;
+
+  try {
+    // User's ingredients
+    const fridgeContents = await getFridgeContents(user_id);
+
+    // User's restrictions (if any)
+    const preference = fridgeContents[0].Preference;
+
+    // Generate comma-separated list of ingredients for input into Spoonacular
+    // Map through the array, access the objects within, take out preference and add it to a list of strings separated by commas
+    const fridgeList = fridgeContents.map((e) => {
+      return e.Ingredient;
+    }).toString();
+
+    // Use Spoonacular's ranking system to minimize missing ingredients
+    const ranking = 2;
+    // If we want the user to be able to switch up the ranking: const ranking = req.query.ranking || 2;
+    // The url would look like this: /recipes?ranking=2
+
+    // Get recipe matches based on ingredients from Spoonacular
+    const recipeMatchesCall = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients`, {
+      params: {
+        ingredients: fridgeList,
+        apiKey: apiKey,
+        ranking: ranking
+      }
+    });
+    
+    const recipeMatches = recipeMatchesCall.data;
+    
+    res.status(200).send(recipeMatches);
+
+    // Get recipe matches cards from Spoonacular
+
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+
+  
+  // // GET recipe matches and cards
+  // app.get('/recipes-with-cards', async (req, res) => {
+  
+  //         // Step 2: For each recipe, get its recipe card
+  //         const recipeCardsPromises = recipeMatches.map(async (recipe) => {
+  //             const recipeCardResponse = await axios.get(`https://api.spoonacular.com/recipes/${recipe.id}/card`, {
+  //                 params: {
+  //                     apiKey: SPOONACULAR_API_KEY
+  //                 }
+  //             });
+  //             return {
+  //                 ...recipe,  // Include the original recipe details
+  //                 card: recipeCardResponse.data.url  // Add the recipe card URL to the recipe object
+  //             };
+  //         });
+  
+  //         // Wait for all card requests to complete
+  //         const recipesWithCards = await Promise.all(recipeCardsPromises);
+  
+  //         // Step 3: Send the final results (recipes + their cards) to the client
+  //         res.json(recipesWithCards);
+  //     } catch (error) {
+  //         console.error('Error fetching recipes or cards:', error);
+  //         res.status(500).send('Error fetching recipe matches and cards');
+  //     }
+  // });
+  
+  
+});
 
 module.exports = router;
