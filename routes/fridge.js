@@ -95,7 +95,7 @@ router.put("/:id", userShouldBeLoggedIn, async (req, res) => {
 
 // Recipe view
 
-// GET recipe cards from API (limit up to 10?), match based on fridge contents 
+// GET recipe matches (limit 10 when we roll it out?), then GET recipe cards for recipes
 
 // It looks like adding plus will trigger the ignorePantry. Maybe have a set number of those (like water, sugar, salt, pepper, oil?) each time?
 // I have not done anything with preference yet.
@@ -108,6 +108,7 @@ router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
     const fridgeContents = await getFridgeContents(user_id);
 
     // User's restrictions (if any)
+    // I'm not quite sure what to do with this yet. It may be easier to have a column for diet and a column for intolerances in the database
     const preference = fridgeContents[0].Preference;
 
     // Generate comma-separated list of ingredients for input into Spoonacular
@@ -124,13 +125,17 @@ router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
     // Number of recipes limit (I set low to reduce api calls right now but we can change)
     const number = 2
 
+    // Use ignorePantry boolean from Spoonacular to ignore pantry stables
+    const ignorePantry = true;
+
     // Get recipe matches based on ingredients from Spoonacular
     const recipeMatchesCall = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients`, {
       params: {
         ingredients: fridgeList,
         apiKey: apiKey,
         ranking: ranking,
-        number: number
+        number: number,
+        ignorePantry: ignorePantry
       }
     });
     
@@ -150,7 +155,7 @@ router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
         return {
           // Want to send full recipe in case info is needed later (like missing ingredients)
           ...recipe,
-          // Card is sent as a url, but I'm not sure how to display it later
+          // Card is sent as a png, but I'm not sure how to display it later
           card: recipeCardsCall.data.url
         };
       });
