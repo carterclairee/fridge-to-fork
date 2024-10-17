@@ -96,10 +96,6 @@ router.put("/:id", userShouldBeLoggedIn, async (req, res) => {
 // Recipe view
 
 // GET recipe matches (limit 10 when we roll it out?), then GET recipe cards for recipes
-
-// It looks like adding plus will trigger the ignorePantry. Maybe have a set number of those (like water, sugar, salt, pepper, oil?) each time?
-// I have not done anything with preference yet.
-
 router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
   const user_id = req.user_id;
 
@@ -108,8 +104,7 @@ router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
     const fridgeContents = await getFridgeContents(user_id);
 
     // User's restrictions (if any)
-    // I'm not quite sure what to do with this yet. It may be easier to have a column for diet and a column for intolerances in the database
-    const preference = fridgeContents[0].Preference;
+    const diet = fridgeContents[0].Preference;
 
     // Generate comma-separated list of ingredients for input into Spoonacular
     // Map through the array, access the objects within, take out preference and add it to a list of strings separated by commas
@@ -125,7 +120,7 @@ router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
     // Number of recipes limit (I set low to reduce api calls right now but we can change)
     const number = 2
 
-    // Use ignorePantry boolean from Spoonacular to ignore pantry stables
+    // Use ignorePantry boolean from Spoonacular to ignore pantry staples
     const ignorePantry = true;
 
     // Get recipe matches based on ingredients from Spoonacular
@@ -135,7 +130,8 @@ router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
         apiKey: apiKey,
         ranking: ranking,
         number: number,
-        ignorePantry: ignorePantry
+        ignorePantry: ignorePantry,
+        diet: diet
       }
     });
     
@@ -143,7 +139,6 @@ router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
 
     // Get recipe matches cards from Spoonacular
     // Need to map through the recipes array to get the id number. Will need an if statement in case of no matches
-
     if (recipeMatches.length) {
       // Getting promise first because will want to wait for all promises to be resolved before showing cards (will use Promise.all later)
       const recipeCardsPromise = recipeMatches.map(async (recipe) => {
