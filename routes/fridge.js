@@ -98,7 +98,7 @@ router.put("/:id", userShouldBeLoggedIn, async (req, res) => {
 // GET recipe cards from API (limit up to 10?), match based on fridge contents 
 
 // It looks like adding plus will trigger the ignorePantry. Maybe have a set number of those (like water, sugar, salt, pepper, oil?) each time?
-// I have not done anything with preference yet
+// I have not done anything with preference yet.
 
 router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
   const user_id = req.user_id;
@@ -160,6 +160,8 @@ router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
 
       // Send both recipes (may need missing ingredient info for display) and cards
       res.send(recipesAndCards);
+    } else {
+      res.status(404).send({ message: "No recipe matches found." });
     }
   } catch (error) {
     res.status(500).send({ error: error.message });
