@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require("jsonwebtoken");
+const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 const db = require("../model/helper");
+require("dotenv").config();
 var bcrypt = require("bcrypt");
 const saltRounds = 10;
-const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
+
 
 
 const supersecret = process.env.SUPER_SECRET;
@@ -36,7 +38,7 @@ router.get("/", async (req, res) => {
 //post users
 // login for the first time 
 
-router.post("/", async (req, res) => {
+router.post("/register", async (req, res) => {
   const { UserName, Password, Email, FirstName, LastName, Preference } = req.body;
 
   try {
