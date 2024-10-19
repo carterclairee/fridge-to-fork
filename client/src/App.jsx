@@ -26,7 +26,7 @@ function App() {
 
       {/*<Link to="/">Home</Link>*/}
       <Link to="/Login">Login</Link>
-      <Link to="/register">  Register</Link>
+      <Link to="/register">Register</Link>
       {/*<Link to="/Profile">Profile</Link>*/}
       <Link to="/Fridge">Fridge</Link>
         
