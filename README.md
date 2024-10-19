@@ -16,6 +16,7 @@
   DB_USER=root
   DB_NAME=ecg
   DB_PASS=YOURPASSWORD
+  SUPER_SECRET=SOMEPASSWORD
 ```
 
 - Run `npm run migrate` in the project folder of this repository, in a new terminal window. This will create the tables called `User` and `Fridge`in your database.
