@@ -8,11 +8,13 @@ function App() {
 
   return (
     <>
+    <div className='container-fluid'>
       <h1>Fridge to Fork</h1>
 
       <Routes>
         <Route path="/Fridge" element={<Fridge/>}></Route>
       </Routes>
+    </div>
     </>
   )
 }
