@@ -2,11 +2,11 @@ import { useState } from 'react';
 
 function AddIngredientForm({ onSubmit }) {
     const [ingredient, setIngredient] = useState({
-        ingredient: "",
-        expirationDate: "",
-        category: "",
-        quantity: "",
-        unit: ""
+        Ingredient: "",
+        ExpirationDate: "",
+        Category: "",
+        Quantity: "",
+        Unit: ""
     })
 
     const handleInput = (e) => {
@@ -22,17 +22,17 @@ function AddIngredientForm({ onSubmit }) {
         onSubmit(ingredient);
 
         setIngredient({
-            ingredient: "",
-            expirationDate: "",
-            category: "",
-            quantity: "",
-            unit: ""
+            Ingredient: "",
+            ExpirationDate: "",
+            Category: "",
+            Quantity: "",
+            Unit: ""
         });
     };
 
     return (
       <>
-        <div className="modal fade modal-dialog-scrollable" id="AddIngredientForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade modal-dialog-scrollable" id="AddIngredientForm" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                 <div className="modal-header">
@@ -47,8 +47,8 @@ function AddIngredientForm({ onSubmit }) {
                         <div className="form-floating">
                             <input type="text" className="form-control mb-1" id="floatingInput1" placeholder="text"
                             // Value and name for 2-way binding
-                            value={ingredient.ingredient}
-                            name="ingredient"
+                            value={ingredient.Ingredient}
+                            name="Ingredient"
                             // Event listener
                             onChange={e => handleInput(e)}/>
                             <label htmlFor="floatingInput1">Ingredient</label>
@@ -57,8 +57,8 @@ function AddIngredientForm({ onSubmit }) {
                         {/* Expiration Date */}
                         <div className="form-floating">
                             <input type="text" className="form-control mb-1" id="floatingInput2" placeholder="text"
-                            value={ingredient.expirationDate}
-                            name="expirationDate"
+                            value={ingredient.ExpirationDate}
+                            name="ExpirationDate"
                             onChange={e => handleInput(e)}/>
                             <label htmlFor="floatingInput2">Expiration (yyyy/mm/dd)</label>
                         </div>
@@ -68,8 +68,8 @@ function AddIngredientForm({ onSubmit }) {
                             <select 
                                 className="form-select mb-2" 
                                 id="floatingSelect3"
-                                value={ingredient.category}
-                                name="category" 
+                                value={ingredient.Category}
+                                name="Category" 
                                 onChange={e => handleInput(e)}
                             >
                             {/* Options */}
@@ -86,8 +86,8 @@ function AddIngredientForm({ onSubmit }) {
                         {/* Quantity */}
                         <div className="form-floating">
                             <input type="text" className="form-control mb-1" id="floatingInput4" placeholder="text"
-                            value={ingredient.quantity}
-                            name="quantity"
+                            value={ingredient.Quantity}
+                            name="Quantity"
                             onChange={e => handleInput(e)}/>
                             <label htmlFor="floatingInput4">Quantity</label>
                         </div>
@@ -95,8 +95,8 @@ function AddIngredientForm({ onSubmit }) {
                         {/* Unit */}
                         <div className="form-floating">
                             <input type="text" className="form-control mb-1" id="floatingInput5" placeholder="text"
-                            value={ingredient.unit}
-                            name="unit"
+                            value={ingredient.Unit}
+                            name="Unit"
                             onChange={e => handleInput(e)}/>
                             <label htmlFor="floatingInput5">Unit</label>
                         </div>
