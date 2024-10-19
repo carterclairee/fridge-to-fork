@@ -1,7 +1,12 @@
 import AddIngredientForm from './AddIngredientForm';
+import { useEffect } from 'react';
+// Import Axios
 
 function Fridge() {
 
+    const handleAddIngredient = (ingredient) => {
+        // Add the ingredient to the database using axios (will be protected)
+    }
 
   return (
     <>

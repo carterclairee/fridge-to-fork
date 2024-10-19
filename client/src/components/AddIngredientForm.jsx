@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-function AddIngredientForm() {
+function AddIngredientForm({ handleAddIngredient }) {
     const [ingredient, setIngredient] = useState({
         ingredient: "",
         expirationDate: "",
         category: "",
         quantity: "",
-        unit: "",
+        unit: ""
     })
 
     const handleInput = (e) => {
@@ -18,6 +18,16 @@ function AddIngredientForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        handleAddIngredient(ingredient);
+
+        setIngredient({
+            ingredient: "",
+            expirationDate: "",
+            category: "",
+            quantity: "",
+            unit: ""
+        });
     };
 
     return (
@@ -93,10 +103,10 @@ function AddIngredientForm() {
 
                         {/* Button */}
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-outline-primary">Add</button>
+                            <button type="submit" className="btn btn-outline-primary">Add</button>
                         </div>
                     </form>
-                    
+
                 </div>
                 </div>
             </div>
