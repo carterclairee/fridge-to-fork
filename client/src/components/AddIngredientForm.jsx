@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function AddIngredientForm({ handleAddIngredient }) {
+function AddIngredientForm({ onSubmit }) {
     const [ingredient, setIngredient] = useState({
         ingredient: "",
         expirationDate: "",
@@ -19,7 +19,7 @@ function AddIngredientForm({ handleAddIngredient }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        handleAddIngredient(ingredient);
+        onSubmit(ingredient);
 
         setIngredient({
             ingredient: "",

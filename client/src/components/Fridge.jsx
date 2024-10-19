@@ -16,7 +16,7 @@ function Fridge() {
         <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#AddIngredientForm">Add Ingredient</button>
 
         {/* Render AddIngredientForm */}
-        <AddIngredientForm />
+        <AddIngredientForm onSubmit={handleAddIngredient}/>
     </>
   )
 }
