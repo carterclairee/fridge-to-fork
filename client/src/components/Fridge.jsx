@@ -1,11 +1,11 @@
-
+import AddIngredientForm from './AddIngredientForm';
 
 function Fridge() {
 
 
   return (
     <>
-        Fridge
+        <h1>User's Fridge</h1>
     </>
   )
 }
