@@ -5,6 +5,10 @@ import axios from "axios";
 function Fridge() {
     const [myFridge, setMyFridge] = useState([]);
 
+    const getFridgeContents = async () => {
+
+    };
+
     const handleAddIngredient = async (ingredient) => {
         try {
             // "data" here is the response we expect from the endpoint
