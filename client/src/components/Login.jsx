@@ -66,9 +66,14 @@ function Register(){
         <option value="Vegan">Vegan</option>
         <option value="Vegetarian">Vegetarian</option>
         <option value="Glutenfree">Glutenfree</option>
-        <option value="Diabetesfriendly">Diabetes friendly</option>
-        <option value="Lactosfree">Lactosfree</option>
-        <option value="Kidsfriendly">Kids friendly</option>
+        <option value="Ketogenic">Ketogenic</option>
+        <option value="Lacto-Vegetarian">Lacto-Vegetarian</option>
+        <option value="Ovo-Vegetarian">Pescetarian</option>
+        <option value="Pescetarian">Ovo-Vegetarian</option>
+        <option value="Paleo">Paleo</option>
+        <option value="Primal">Primal</option>
+        <option value="Low FODMAP">Low FODMAP</option>
+        <option value="Whole30">Whole30</option>
         <option value="">Anything goes!</option>
          </select>
 
