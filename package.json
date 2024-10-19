@@ -17,6 +17,7 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "react-router-dom": "^6.27.0"
   }
 }
