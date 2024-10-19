@@ -1,15 +1,15 @@
 import React, {useState}from "react";
-import { use } from "../../../routes/users";
+{/*import { use } from "../../../routes/users"; */}
 
 
-function register(){
+function Register(){
 
-    const {UserName, setUserName} = useState("");
-    const {FirstName, setFirstName} = useState("");
-    const {LastName, setLastName} = useState("");
-    const {Password, setPassword} = useState("");
-    const {Email, setEmail} = useState("");
-    const {Preference, setPreference} = useState("");
+    const [UserName, setUserName] = useState("");
+    const [FirstName, setFirstName] = useState("");
+    const [LastName, setLastName] = useState("");
+    const [Password, setPassword] = useState("");
+    const [Email, setEmail] = useState("");
+    const [Preference, setPreference] = useState("");
 
     const [errorMessage, setErrorMessage] = useState(null);
     
@@ -21,7 +21,7 @@ function register(){
             const response = await fetch("/api/register", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ FirstName, LastName, Email, Password, Preference }),
+              body: JSON.stringify({ UserName, FirstName, LastName, Email, Password, Preference }),
             });
 
             if (response.ok){
@@ -41,7 +41,7 @@ function register(){
         <input 
         type="text"
         placeholder= "Choose a user name" 
-        value={UserNameName} onChange={(e) => setUserName(e.target.value)} />
+        value={UserName} onChange={(e) => setUserName(e.target.value)} />
         <input 
         type="text"
         placeholder= " First name" 
@@ -81,10 +81,10 @@ function register(){
 
    }
 
-function login(){
+function Login(){
 
-    const {UserName, setUserName} = useState("");
-    const {Password, setPassword} = useState("");
+    const [UserName, setUserName] = useState("");
+    const [Password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState(null);
     
     const handleLoginSubmit = async (event) => {
@@ -114,11 +114,11 @@ return (
       
       <input 
       type="text"
-      placeholder= "user name" 
+      placeholder= "Username" 
       value={UserName} onChange={(e) => setUserName(e.target.value)}/>
       <input 
       type="password"
-      placeholder= "password"
+      placeholder= "Password"
       value={Password} onChange={(e) => setPassword(e.target.value)} />
       <button type="submit">Login</button>
       {errorMessage && <p>{errorMessage}</p>}
@@ -127,3 +127,4 @@ return (
 
 );
 }
+export { Register, Login }; 

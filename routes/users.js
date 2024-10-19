@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require("jsonwebtoken");
+const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 const db = require("../model/helper");
+require("dotenv").config();
 var bcrypt = require("bcrypt");
 const saltRounds = 10;
-const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
+
 
 
 const supersecret = process.env.SUPER_SECRET;
