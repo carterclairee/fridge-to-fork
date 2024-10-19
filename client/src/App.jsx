@@ -8,8 +8,7 @@ import {Register, Login} from './components/Login';
 {/*import Home from './components/Home';*/}
 {/*import Profile from'./components/Profile */}
 import Fridge from './components/Fridge'
-{/*import Profile from'./components/Profile */}
-import Fridge from './components/Fridge'
+
 import { Routes, Route, Link } from 'react-router-dom';
 
 
