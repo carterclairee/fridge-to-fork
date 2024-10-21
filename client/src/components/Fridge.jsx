@@ -1,13 +1,17 @@
 import AddIngredientForm from './AddIngredientForm';
 import { useEffect, useState } from 'react';
 import axios from "axios";
+import CategoryTable from './CategoryTable';
 
 function Fridge() {
     const [myFridge, setMyFridge] = useState([]);
 
     // Category filters
     const breadIngredients = myFridge.filter(i => i.Category === "bread, cereal, rice, pasta");
+    const fruitsIngredients = myFridge.filter(i => i.Category === "fruits and vegetables");
     const meatIngredients = myFridge.filter(i => i.Category === "meat, poultry, fish, beans, eggs");
+    const milkIngredients = myFridge.filter(i => i.Category === "milk, yogurt, cheese");
+    const fatsIngredients = myFridge.filter(i => i.Category === "fats, oils, sweets");
 
     useEffect(() => {getFridgeContents()}, []);
 
@@ -50,65 +54,12 @@ function Fridge() {
         {/* Button to open AddIngredientForm modal */}
         <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#AddIngredientForm">Add Ingredient</button>
 
-        <h3>Bread, cereal, rice, and pasta</h3>
-        {breadIngredients.length > 0 ? 
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Ingredient</th>
-                        <th scope="col">Expiration Date</th>
-                        <th scope="col">Quantity</th>
-                        {/* Will have edit and delete icons */}
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {breadIngredients.map(ingredient => (
-                        <tr key={ingredient.id}>
-                            <td>{ingredient.Ingredient}</td>
-                            <td>{ingredient.ExpirationDate.split('T')[0]}</td>
-                            <td>{ingredient.Quantity} {ingredient.Unit}</td>
-                            <td>edit</td>
-                            <td>delete</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        : <p>No ingredients in this food group</p>}
-
-        <h3>Fruits and vegetables</h3>
-
-        <h3>Meat, poultry, fish, beans, and eggs</h3>
-        {meatIngredients.length > 0 ? 
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Ingredient</th>
-                        <th scope="col">Expiration Date</th>
-                        <th scope="col">Quantity</th>
-                        {/* Will have edit and delete icons */}
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {meatIngredients.map(ingredient => (
-                        <tr key={ingredient.id}>
-                            <td>{ingredient.Ingredient}</td>
-                            <td>{ingredient.ExpirationDate.split('T')[0]}</td>
-                            <td>{ingredient.Quantity} {ingredient.Unit}</td>
-                            <td>edit</td>
-                            <td>delete</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        : <p>No ingredients in this food group</p>}
-
-        <h3>Milk, yogurt, and cheese</h3>
-
-        <h3>Fats, oils, and sweets</h3>
+        {/* Using CategoryTable for display */}
+        <CategoryTable categoryTitle="Bread, Cereal, Rice, and Pasta" ingredients = {breadIngredients} />
+        <CategoryTable categoryTitle="Fruits and Vegetables" ingredients = {fruitsIngredients} />
+        <CategoryTable categoryTitle="Meat, Poultry, Fish, Beans, and Eggs" ingredients = {meatIngredients} />
+        <CategoryTable categoryTitle="Milk, Yogurt, and Cheese" ingredients = {milkIngredients} />
+        <CategoryTable categoryTitle="Fats, Oils, and Sweets" ingredients = {fatsIngredients} />
 
         {/* Render AddIngredientForm */}
         <AddIngredientForm onSubmit={handleAddIngredient}/>
