@@ -13,19 +13,39 @@ function Register(){
     const [Preference, setPreference] = useState("");
 
     const [errorMessage, setErrorMessage] = useState(null);
-    
+    const [successMessage, setSuccessMessage] = useState(null);
 
     const handleRegisterSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            const response = await fetch("/api/register", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ UserName, FirstName, LastName, Email, Password, Preference }),
-            });
+            const response = await axios.post("/api/users/register", {
+              UserName,
+              FirstName,
+              LastName,
+              Email,
+              Password,
+              Preference,
+            }); 
 
-            if (response.ok){
+            if (response.status === 200) {
+              console.log("Registration successful");
+              setSuccessMessage(response.data.message); 
+              setErrorMessage(null); 
+            } else {
+              setErrorMessage("Registration failed. Please try again.");
+              setSuccessMessage(null);
+            }
+          } catch (error) {
+            
+            console.error("Error during registration:", error.response?.data?.message || error.message);
+            setErrorMessage(error.response?.data?.message || "An error occurred during registration.");
+            setSuccessMessage(null);
+          }
+        };
+            
+
+            {/*if (response.ok){
                 console.log("registration");
             } else {
                 setErrorMessage("Registration failed");
@@ -34,7 +54,7 @@ function Register(){
                 setErrorMessage(error.message);
             }
       
-        };
+        }; */}
 
    return (
     <form onSubmit={handleRegisterSubmit}>
@@ -79,8 +99,9 @@ function Register(){
          </select>
 
         <button type="submit">Register</button>
-      {errorMessage && <p>{errorMessage}</p>}
-
+     
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
 
     </form>
    );     
@@ -118,8 +139,8 @@ function Login(){
 
 function Login() {
     const [credentials, setCredentials] = useState({
-      UserName: "Test",
-      Password: "Test",
+      UserName: "Username",
+      Password: "Password",
     });
   
     const [data, setData] = useState(null);
