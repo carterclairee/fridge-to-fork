@@ -1,4 +1,5 @@
-import React, {useState}from "react";
+import React, {useState, useContext}from "react";
+import AuthContext from "../context/AuthContext";
 import axios from "axios";
 {/*import { use } from "../../../routes/users"; */}
 
@@ -107,34 +108,6 @@ function Register(){
    );     
 
    }
-/*
-function Login(){
-
-    const [UserName, setUserName] = useState("");
-    const [Password, setPassword] = useState("");
-    const [errorMessage, setErrorMessage] = useState(null);
-    
-    const handleLoginSubmit = async (event) => {
-        event.preventDefault(); 
-    
-        try {
-
-            const response = await fetch("/api/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ UserName, Password }),
-              });
-       
-         if (response.ok) {
-            console.log("Login successful");
-        }else {
-            setErrorMessage("Login failed");
-        }   
-    } catch (error){
-        setErrorMessage(error.message);
-    }
-};
-*/
 
 
 function Login() {
@@ -143,19 +116,28 @@ function Login() {
       Password: "Password",
     });
   
-    const [data, setData] = useState(null);
+    { /*const [data, setData] = useState(null); */}
   
     const { UserName, Password } = credentials;
+
+    const auth = useContext(AuthContext);
   
     const handleChange = (e) => {
       const { name, value } = e.target;
       setCredentials({ ...credentials, [name]: value });
     };
   
-    const login = async () => {
-      // send a POST request to /api/auth/login with the username and password
-      try {
-        // axios return a data object with the response from the server
+    const login = () => {
+      auth.login(credentials);
+    };
+
+    const logout = () => {
+      auth.logout();
+    };
+
+
+    {/*  try {
+        
         const { data } = await axios("/api/users/login", {
           method: "POST",
           data: credentials,
@@ -193,29 +175,10 @@ function Login() {
           console.log(error);
           setData(error.message);
         }
-      };
+      }; */} 
 
 
 
-/*
-return (
-    
-    <form onSubmit={handleLoginSubmit}>
-      
-      <input 
-      type="text"
-      placeholder= "Username" 
-      value={UserName} onChange={(e) => setUserName(e.target.value)}/>
-      <input 
-      type="password"
-      placeholder= "Password"
-      value={Password} onChange={(e) => setPassword(e.target.value)} />
-      <button type="submit">Login</button>
-      {errorMessage && <p>{errorMessage}</p>}
-    </form>
-
-
-); */
 
 
 return (
@@ -244,17 +207,21 @@ return (
           </button>
         </div>
       </div>
-      <div className="text-center p-4">
+      
+     {/* <div className="text-center p-4">
         <button className=" btn btn-outline-primary" onClick={requestData}>
           Request protected data
         </button>
       </div>
+      
 
       {data && (
         <div className="text-center p-4">
           <div className="alert">{data}</div>
         </div>
       )}
+      */}
+
     </div>
   );
 
