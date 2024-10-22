@@ -2,6 +2,7 @@ import AddIngredientForm from './AddIngredientForm';
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import CategoryTable from './CategoryTable';
+import './Fridge.css';
 
 function Fridge() {
     const [myFridge, setMyFridge] = useState([]);
@@ -77,12 +78,14 @@ function Fridge() {
 
   return (
     <>
+    <div className="fridge-outer">
         {/* Needed to have something while data was loading, otherwise the app would crash */}
-        <h2>{myFridge.length > 0 ? `${myFridge[0].FirstName}'s Fridge` : "Loading..."}</h2>
+        <h2 className="text-center">{myFridge.length > 0 ? `${myFridge[0].FirstName}'s Fridge` : "Loading..."}</h2>
 
         {/* Button to open AddIngredientForm modal */}
-        <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#AddIngredientForm">Add Ingredient</button>
+        <button type="button" className="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#AddIngredientForm">Add Ingredient</button>
 
+        <div className="fridge-inner">
         {/* Using CategoryTable for display */}
         <CategoryTable categoryTitle="Bread, Cereal, Rice, and Pasta" ingredients={breadIngredients} onEdit={handleEditIngredient} onDelete={handleDeleteIngredient}/>
 
@@ -93,9 +96,11 @@ function Fridge() {
         <CategoryTable categoryTitle="Milk, Yogurt, and Cheese" ingredients={milkIngredients} onEdit={handleEditIngredient} onDelete={handleDeleteIngredient}/>
 
         <CategoryTable categoryTitle="Fats, Oils, and Sweets" ingredients={fatsIngredients} onEdit={handleEditIngredient} onDelete={handleDeleteIngredient}/>
+        </div>
 
         {/* Render AddIngredientForm */}
         <AddIngredientForm onSubmit={handleAddIngredient} />
+    </div>
     </>
   )
 }

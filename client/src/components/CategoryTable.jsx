@@ -37,9 +37,9 @@ export default function CategoryTable ({ categoryTitle, ingredients, onEdit, onD
     return (
         <>
         <div className="container">
-        <h3 className="mt-4">{categoryTitle}</h3>
+        <h4 className="mt-5">{categoryTitle}</h4>
         {ingredients.length > 0 ? 
-            <table className="table">
+            <table className="table table-hover table-borderless custom-table">
                 <thead>
                     <tr>
                         <th scope="col">Ingredient</th>
