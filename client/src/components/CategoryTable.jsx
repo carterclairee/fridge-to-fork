@@ -36,10 +36,10 @@ export default function CategoryTable ({ categoryTitle, ingredients, onEdit, onD
     
     return (
         <>
-        <div className="container">
-        <h3 className="mt-4">{categoryTitle}</h3>
+        <div className="container table-container mb-4">
+        <h4 className="mt-2">{categoryTitle}</h4>
         {ingredients.length > 0 ? 
-            <table className="table">
+            <table className="table table-hover table-borderless custom-table">
                 <thead>
                     <tr>
                         <th scope="col">Ingredient</th>
@@ -78,11 +78,11 @@ export default function CategoryTable ({ categoryTitle, ingredients, onEdit, onD
                                 </td>
 
                                 <td>
-                                    <button type="submit" className="btn btn-outline-primary btn-sm" onClick={handleEditSubmit}>Save</button>
+                                    <button type="submit" className="btn btn-dark btn-sm" onClick={handleEditSubmit}>Save</button>
                                 </td>
 
                                 <td>
-                                    <button className="btn btn-outline-dark btn-sm" onClick={() => setSelectedIngredient({
+                                    <button className="btn btn-dark btn-sm" onClick={() => setSelectedIngredient({
                                         id: '',
                                         Quantity: '',
                                         Unit: ''

@@ -13,4 +13,8 @@
   gap: 20px;
 }
 
-
+/* To keep the table columns aligned across categories on Fridge view */
+.table {
+  table-layout: fixed; /* or auto */
+  width: 100%;
+}

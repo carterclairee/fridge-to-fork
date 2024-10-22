@@ -113,10 +113,15 @@ function AddIngredientForm({ onSubmit }) {
 
                         {/* Button */}
                         <div className="modal-footer d-flex justify-content-between">
-                            <button type="submit" className="btn btn-outline-primary">Add</button>
+                            <button type="submit" className="btn btn-dark">Add</button>
                             
                             {/* Success message */}
-                            {success && (<p>Ingredient added!</p>)}
+                            {success && (
+                                <div className="d-flex align-items-center">
+                                    <i className="fa-solid fa-circle-check" style={{ color: '#0C1618', marginRight: '8px' }}></i>
+                                    <p className="mb-0">Ingredient added!</p>
+                                </div>
+                            )}
                         </div>
                     </form>
                 </div>
