@@ -9,6 +9,9 @@ function AddIngredientForm({ onSubmit }) {
         Unit: ""
     })
 
+    // For message that ingredient was added successfully
+    const [success, setSuccess] = useState(false);
+
     const handleInput = (e) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -21,6 +24,8 @@ function AddIngredientForm({ onSubmit }) {
 
         onSubmit(ingredient);
 
+        setSuccess(true);
+
         setIngredient({
             Ingredient: "",
             ExpirationDate: "",
@@ -28,6 +33,11 @@ function AddIngredientForm({ onSubmit }) {
             Quantity: "",
             Unit: ""
         });
+
+        // Clear success message after a delay
+        setTimeout(() => {
+            setSuccess(false);  // Hide success message after 3 seconds
+        }, 5000);
     };
 
     return (
@@ -60,7 +70,7 @@ function AddIngredientForm({ onSubmit }) {
                             value={ingredient.ExpirationDate}
                             name="ExpirationDate"
                             onChange={e => handleInput(e)}/>
-                            <label htmlFor="floatingInput2">Expiration (yyyy/mm/dd)</label>
+                            <label htmlFor="floatingInput2">Expiration (yyyymmdd)</label>
                         </div>
 
                         {/* Category */}
@@ -102,11 +112,13 @@ function AddIngredientForm({ onSubmit }) {
                         </div>
 
                         {/* Button */}
-                        <div className="modal-footer">
+                        <div className="modal-footer d-flex justify-content-between">
                             <button type="submit" className="btn btn-outline-primary">Add</button>
+                            
+                            {/* Success message */}
+                            {success && (<p>Ingredient added!</p>)}
                         </div>
                     </form>
-
                 </div>
                 </div>
             </div>

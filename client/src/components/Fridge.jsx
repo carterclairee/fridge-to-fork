@@ -46,6 +46,35 @@ function Fridge() {
         }
     };
 
+    const handleEditIngredient = async (ingredient) => {
+        try {
+            const { data } = await axios(`api/fridge/${ingredient.id}`, {
+                method: "PUT",
+                headers: {
+                    authorization: "Bearer " + localStorage.getItem("token"),
+                },
+                data: ingredient
+            });
+            setMyFridge(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleDeleteIngredient = async (itemId) => {
+        try {
+            const { data } = await axios(`api/fridge/${itemId}`, {
+                method: "DELETE",
+                headers: {
+                    authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            });
+            setMyFridge(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
   return (
     <>
         {/* Needed to have something while data was loading, otherwise the app would crash */}
@@ -55,14 +84,18 @@ function Fridge() {
         <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#AddIngredientForm">Add Ingredient</button>
 
         {/* Using CategoryTable for display */}
-        <CategoryTable categoryTitle="Bread, Cereal, Rice, and Pasta" ingredients = {breadIngredients} />
-        <CategoryTable categoryTitle="Fruits and Vegetables" ingredients = {fruitsIngredients} />
-        <CategoryTable categoryTitle="Meat, Poultry, Fish, Beans, and Eggs" ingredients = {meatIngredients} />
-        <CategoryTable categoryTitle="Milk, Yogurt, and Cheese" ingredients = {milkIngredients} />
-        <CategoryTable categoryTitle="Fats, Oils, and Sweets" ingredients = {fatsIngredients} />
+        <CategoryTable categoryTitle="Bread, Cereal, Rice, and Pasta" ingredients={breadIngredients} onEdit={handleEditIngredient} onDelete={handleDeleteIngredient}/>
+
+        <CategoryTable categoryTitle="Fruits and Vegetables" ingredients={fruitsIngredients} onEdit={handleEditIngredient} onDelete={handleDeleteIngredient}/>
+
+        <CategoryTable categoryTitle="Meat, Poultry, Fish, Beans, and Eggs" ingredients={meatIngredients} onEdit={handleEditIngredient} onDelete={handleDeleteIngredient}/>
+
+        <CategoryTable categoryTitle="Milk, Yogurt, and Cheese" ingredients={milkIngredients} onEdit={handleEditIngredient} onDelete={handleDeleteIngredient}/>
+
+        <CategoryTable categoryTitle="Fats, Oils, and Sweets" ingredients={fatsIngredients} onEdit={handleEditIngredient} onDelete={handleDeleteIngredient}/>
 
         {/* Render AddIngredientForm */}
-        <AddIngredientForm onSubmit={handleAddIngredient}/>
+        <AddIngredientForm onSubmit={handleAddIngredient} />
     </>
   )
 }
