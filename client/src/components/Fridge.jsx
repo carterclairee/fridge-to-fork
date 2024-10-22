@@ -80,10 +80,15 @@ function Fridge() {
     <>
     <div className="fridge-outer">
         {/* Needed to have something while data was loading, otherwise the app would crash */}
-        <h2 className="text-center">{myFridge.length > 0 ? `${myFridge[0].FirstName}'s Fridge` : "Loading..."}</h2>
+        <h2 className="text-center fridge-name mb-3">{myFridge.length > 0 ? `${myFridge[0].FirstName}'s Fridge` : "Loading..."}</h2>
 
-        {/* Button to open AddIngredientForm modal */}
-        <button type="button" className="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#AddIngredientForm">Add Ingredient</button>
+        <div className="equal-buttons">
+            {/* Button to open AddIngredientForm modal */}
+            <button type="button" className="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#AddIngredientForm">Add Ingredient</button>
+
+            {/* Button to go to Recipes */}
+            <button type="button" className="btn btn-outline-light">Match Recipes</button>
+        </div>
 
         <div className="fridge-inner">
         {/* Using CategoryTable for display */}

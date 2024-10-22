@@ -36,10 +36,19 @@
     border-collapse: collapse; /* borders don't have gaps */
 }
 
-.custom-table thead {
-    border-top: 3px solid #E8E1B5; /* Top border of the table */
+.table-container {
+    border-top: 3px solid #E8E1B5; /* Top border above the heading */
+    border-bottom: 3px solid #E8E1B5; 
+    width: 100%; /* Make the container full width */
+    padding: 0;
 }
 
-.custom-table tbody tr:last-child {
-    border-bottom: 3px solid #E8E1B5; /* Bottom border of the table */
+
+/* To make buttons equal widths */
+.equal-buttons button {
+    min-width: 175px; /* Adjust based on the desired minimum width */
+}
+
+.fridge-name {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
