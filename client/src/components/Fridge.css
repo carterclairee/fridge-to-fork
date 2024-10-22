@@ -9,6 +9,18 @@
     width: 100%; /* Full width */
 }
 
+.fridge-outer label {
+    color: #0C1618; /* Set the label color to dark, otherwise modal text is white*/
+}
+
+.modal-header {
+    color: #0C1618; /* Set the modal header text color to dark */
+}
+
+.modal-footer p {
+    color: #0C1618; /* Set the success message text color to dark */
+}
+
 .fridge-inner {
     border: 3px solid #eee9ca; /* Light border for the inner fridge */
     border-radius: 10px 10px 0 0; /* Rounded corners at the top */
