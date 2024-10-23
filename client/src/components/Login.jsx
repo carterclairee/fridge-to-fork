@@ -1,6 +1,7 @@
 import React, {useState, useContext}from "react";
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 {/*import { use } from "../../../routes/users"; */}
 
 
@@ -112,8 +113,8 @@ function Register(){
 
 function Login() {
     const [credentials, setCredentials] = useState({
-      UserName: "Username",
-      Password: "Password",
+      UserName: "",
+      Password: "",
     });
   
     { /*const [data, setData] = useState(null); */}
@@ -121,6 +122,7 @@ function Login() {
     const { UserName, Password } = credentials;
 
     const auth = useContext(AuthContext);
+    const navigate = useNavigate();
   
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -129,6 +131,8 @@ function Login() {
   
     const login = () => {
       auth.login(credentials);
+      navigate("/")
+
     };
 
     const logout = () => {
@@ -189,6 +193,7 @@ return (
           onChange={handleChange}
           name="UserName"
           type="text"
+          placeholder="User"
           className="form-control mb-2"
         />
         <input
@@ -196,6 +201,7 @@ return (
           onChange={handleChange}
           name="Password"
           type="password"
+          placeholder="Password"
           className="form-control mb-2"
         />
         <div className="d-flex gap-2 justify-content-center">
