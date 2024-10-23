@@ -8,6 +8,8 @@ import Recipes from './components/Recipes'
 import axios from "axios";
 import AuthContext from "./context/AuthContext";
 import Navbar from "./components/Navbar.jsx";
+import PrivateRoute from './components/PrivateRoute.jsx';
+
 
 import { Routes, Route, Link } from 'react-router-dom';
 
@@ -60,9 +62,9 @@ function App() {
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/Profile" element={<Profile />} />
-        <Route path="/Fridge" element={<Fridge />} /> 
-        <Route path="/Recipes" element={<Recipes />} />
+        <Route path="/Profile" element={ <PrivateRoute> <Profile /></PrivateRoute>} />
+        <Route path="/Fridge" element={ <PrivateRoute><Fridge /> </PrivateRoute>} /> 
+        <Route path="/Recipes" element={ <PrivateRoute><Recipes /> </PrivateRoute>} />
       </Routes>
       
 
