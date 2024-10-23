@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import CategoryTable from './CategoryTable';
 import './Fridge.css';
+import { Link } from "react-router-dom";
 
 function Fridge() {
     const [myFridge, setMyFridge] = useState([]);
@@ -87,7 +88,7 @@ function Fridge() {
             <button type="button" className="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#AddIngredientForm">Add Ingredient</button>
 
             {/* Button to go to Recipes */}
-            <button type="button" className="btn btn-outline-light">Match Recipes</button>
+            <button type="button" className="btn btn-outline-light"><Link to="/Recipes" className="recipes-link">Match Recipes</Link></button>
         </div>
 
         <div className="fridge-inner">
