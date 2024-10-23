@@ -8,6 +8,7 @@ import {Register, Login} from './components/Login';
 {/*import Home from './components/Home';*/}
 import Profile from'./components/Profile' 
 import Fridge from './components/Fridge'
+import Recipes from './components/Recipes'
 
 import { Routes, Route, Link } from 'react-router-dom';
 
@@ -40,6 +41,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Fridge" element={<Fridge />} /> 
+        <Route path="/Recipes" element={<Recipes />} />
       </Routes>
       
 
