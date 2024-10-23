@@ -208,9 +208,7 @@ return (
           <button className="btn btn-primary" onClick={login}>
             Log in
           </button>
-          <button className="btn btn-outline-dark ml-2" onClick={logout}>
-            Log out
-          </button>
+          
         </div>
       </div>
       
