@@ -79,12 +79,12 @@ router.delete("/:id", userShouldBeLoggedIn, async (req, res) => {
 // PUT ingredients to edit quantity
 router.put("/:id", userShouldBeLoggedIn, async (req, res) => {
   const { id } = req.params;
-  const { Quantity } = req.body;
+  const { Quantity, Unit } = req.body;
   const user_id = req.user_id;
 
   try {
     await db(
-      `UPDATE Fridge SET Quantity = ${Quantity} WHERE id = ${id};`
+      `UPDATE Fridge SET Quantity = ${Quantity}, Unit = "${Unit}" WHERE id = ${id};`
     );
     const fridgeContents = await getFridgeContents(user_id);
     res.send(fridgeContents);

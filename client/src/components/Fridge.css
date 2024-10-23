@@ -1,0 +1,78 @@
+.fridge-outer {
+    border: 3px solid #003e3b; /* Dark border for the outer fridge */
+    border-radius: 10px 10px 0 0; /* Rounded corners at the top */
+    padding: 20px; /* Space inside the outer fridge */
+    background-color: #004643; /* Dark background for the outer fridge */
+    color: white; /* White text */
+    text-align: center; /* Center align text */
+    margin: 20px auto; /* Center the fridge on the page */
+    width: 90%;
+}
+
+.fridge-outer label {
+    color: #0C1618; /* Set the label color to dark, otherwise modal text is white*/
+}
+
+.modal-header {
+    color: #0C1618; /* Set the modal header text color to dark */
+}
+
+.modal-footer p {
+    color: #0C1618; /* Set the success message text color to dark */
+}
+
+.fridge-inner {
+    border: 3px solid #eee9ca; /* Light border for the inner fridge */
+    border-radius: 10px 10px 0 0; /* Rounded corners at the top */
+    padding: 20px; /* Space inside the inner fridge */
+    background-color: #FAF4D3; /* Light background color for the inner fridge */
+    color: #0C1618; /* Dark text color */
+    margin: 20px auto; /* Add some margin space */
+}
+
+/* Table Styling */
+.custom-table {
+    background-color: #FAF4D3; /* Light background color */
+}
+
+.custom-table th, 
+.custom-table td {
+    background-color: #FAF4D3; /* background for header and cells */
+}
+
+.custom-table thead th {
+    color: #333; /* Slightly different dark text for table head */
+}
+
+.custom-table {
+    border-collapse: collapse; /* borders don't have gaps */
+}
+
+.table-container {
+    border-top: 3px solid #E8E1B5; /* Top border above the heading */
+    border-bottom: 3px solid #E8E1B5; 
+    width: 100%; /* Make the container full width */
+    padding: 0;
+}
+
+
+/* To make buttons equal widths */
+.equal-buttons button {
+    min-width: 175px; /* Adjust based on the desired minimum width */
+}
+
+.fridge-name {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #FAF4D3;
+}
+
+.recipes-link {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none;
+    color: #F8F9FA;
+}
+
+.recipes-link:hover {
+    color: #000;
+    border-color: #f8f9fa;
+}

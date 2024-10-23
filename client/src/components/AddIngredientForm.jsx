@@ -9,6 +9,9 @@ function AddIngredientForm({ onSubmit }) {
         Unit: ""
     })
 
+    // For message that ingredient was added successfully
+    const [success, setSuccess] = useState(false);
+
     const handleInput = (e) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -21,6 +24,8 @@ function AddIngredientForm({ onSubmit }) {
 
         onSubmit(ingredient);
 
+        setSuccess(true);
+
         setIngredient({
             Ingredient: "",
             ExpirationDate: "",
@@ -28,6 +33,11 @@ function AddIngredientForm({ onSubmit }) {
             Quantity: "",
             Unit: ""
         });
+
+        // Clear success message after a delay
+        setTimeout(() => {
+            setSuccess(false);  // Hide success message after 3 seconds
+        }, 5000);
     };
 
     return (
@@ -60,7 +70,7 @@ function AddIngredientForm({ onSubmit }) {
                             value={ingredient.ExpirationDate}
                             name="ExpirationDate"
                             onChange={e => handleInput(e)}/>
-                            <label htmlFor="floatingInput2">Expiration (yyyy/mm/dd)</label>
+                            <label htmlFor="floatingInput2">Expiration (yyyymmdd)</label>
                         </div>
 
                         {/* Category */}
@@ -102,11 +112,18 @@ function AddIngredientForm({ onSubmit }) {
                         </div>
 
                         {/* Button */}
-                        <div className="modal-footer">
-                            <button type="submit" className="btn btn-outline-primary">Add</button>
+                        <div className="modal-footer d-flex justify-content-between">
+                            <button type="submit" className="btn btn-dark">Add</button>
+                            
+                            {/* Success message */}
+                            {success && (
+                                <div className="d-flex align-items-center">
+                                    <i className="fa-solid fa-circle-check" style={{ color: '#0C1618', marginRight: '8px' }}></i>
+                                    <p className="mb-0">Ingredient added!</p>
+                                </div>
+                            )}
                         </div>
                     </form>
-
                 </div>
                 </div>
             </div>

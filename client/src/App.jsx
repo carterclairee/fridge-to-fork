@@ -4,6 +4,7 @@ import {Register, Login} from './components/Login';
 {/*import Home from './components/Home';*/}
 import Profile from'./components/Profile' 
 import Fridge from './components/Fridge'
+import Recipes from './components/Recipes'
 import axios from "axios";
 import AuthContext from "./context/AuthContext";
 import Navbar from "./components/Navbar.jsx";
@@ -61,6 +62,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Fridge" element={<Fridge />} /> 
+        <Route path="/Recipes" element={<Recipes />} />
       </Routes>
       
 
