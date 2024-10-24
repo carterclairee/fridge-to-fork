@@ -67,7 +67,9 @@ export default function Navbar() {
                     </li>
 
                     <li className="nav-item" onClick={() => logout()}>
+                      <NavLink className="nav-link">
                       Logout
+                      </NavLink>
                     </li>
                   </>
                 )}
