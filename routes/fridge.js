@@ -93,6 +93,9 @@ router.put("/:id", userShouldBeLoggedIn, async (req, res) => {
   }
 });
 
+// POST ingredients that will be used to search for recipes
+router.post("")
+
 // Recipe view
 
 // GET recipe matches (limit 10 when we roll it out?), then GET recipe cards for recipes
@@ -104,8 +107,8 @@ router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
     const fridgeContents = await getFridgeContents(user_id);
 
     // User's restrictions (if any)
-    const diet = fridgeContents[0].Preference;
-
+    const diet = fridgeContents[0].Preference.toLowerCase();
+   
     // Generate comma-separated list of ingredients for input into Spoonacular
     // Map through the array, access the objects within, take out preference and add it to a list of strings separated by commas
     const fridgeList = fridgeContents.map((e) => {
@@ -118,7 +121,7 @@ router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
     // The url would look like this: /recipes?ranking=2
 
     // Number of recipes limit (I set low to reduce api calls right now but we can change)
-    const number = 2
+    const number = 5
 
     // Use ignorePantry boolean from Spoonacular to ignore pantry staples
     const ignorePantry = true;
@@ -130,42 +133,86 @@ router.get("/recipes", userShouldBeLoggedIn, async (req, res) => {
         apiKey: apiKey,
         ranking: ranking,
         number: number,
-        ignorePantry: ignorePantry,
-        diet: diet
+        ignorePantry: ignorePantry
       }
     });
     
     const recipeMatches = recipeMatchesCall.data;
+    console.log("MATCHED BY INGREDIENTS ONLY ", recipeMatches)
 
-    // Get recipe matches cards from Spoonacular
-    // Need to map through the recipes array to get the id number. Will need an if statement in case of no matches
+    // Need to filter further (by diet, etc.) using the further recipe information endpoint from Spoonacular
+
     if (recipeMatches.length) {
-      // Getting promise first because will want to wait for all promises to be resolved before showing cards (will use Promise.all later)
-      const recipeCardsPromise = recipeMatches.map(async (recipe) => {
-        const recipeCardsCall = await axios.get(`https://api.spoonacular.com/recipes/${recipe.id}/card`, {
+      // Get additional info for each recipe by id
+      const filteredRecipesPromise = recipeMatches.map(async (recipe) => {
+        const recipeInfoCall = await axios.get(`https://api.spoonacular.com/recipes/${recipe.id}/information`, {
           params: {
-            apiKey: apiKey
+            apiKey: apiKey,
+            includeNutrition: false,
+            addWinePairing: false,
+            addTasteData: false
           }
         });
-        return {
-          // Want to send full recipe in case info is needed later (like missing ingredients)
-          ...recipe,
-          // Card is sent as a png, but I'm not sure how to display it later
-          card: recipeCardsCall.data.url
-        };
+
+        const recipeInfo = recipeInfoCall.data;
+        console.log("RECIPE INFO FOR SELECTED RECIPES ", recipeInfo)
+
+        // Check if the recipe matches the dietary preference (they are boolean keys in the recipeInfoCall.data, so this will return a true or false)
+        const matchesDiet = recipeInfo[diet];
+
+        // Only return the recipe if it matches the diet
+        if (matchesDiet) {
+          return recipe;
+        } else {
+          return null;
+        }
       });
 
-      // Use Promise.all, which waits for all of the card requests to complete and is useful since we're doing 2 GETs at the same time here
-      const recipesAndCards = await Promise.all(recipeCardsPromise);
+      // Wait for all promises to finish up, then filter out the nulls
+      // .filter(Boolean) is a short way to filter out the falsy values
+      const filteredRecipes = (await Promise.all(filteredRecipesPromise)).filter(Boolean);
 
-      // Send both recipes (may need missing ingredient info for display) and cards
-      res.send(recipesAndCards);
+      // Send the filtered recipes or a message if no matach
+      if (filteredRecipes.length) {
+        res.send(filteredRecipes);
+      } else {
+        // Message if there aren't any within diet restrictions
+        res.status(404).send({message: "No recipe matches found for your diet."})
+      }
+      // Message if there aren't any recipes for user's ingredients (diet not included in this one)
     } else {
-      res.status(404).send({ message: "No recipe matches found." });
+      res.status(404).send({message: "No recipe matches found"});
     }
   } catch (error) {
     res.status(500).send({ error: error.message });
   }  
 });
+
+    // // Get recipe matches cards from Spoonacular
+    // // Need to map through the recipes array to get the id number. Will need an if statement in case of no matches
+    // if (recipeMatches.length) {
+    //   // Getting promise first because will want to wait for all promises to be resolved before showing cards (will use Promise.all later)
+    //   const recipeCardsPromise = recipeMatches.map(async (recipe) => {
+    //     const recipeCardsCall = await axios.get(`https://api.spoonacular.com/recipes/${recipe.id}/card`, {
+    //       params: {
+    //         apiKey: apiKey
+    //       }
+    //     });
+    //     return {
+    //       // Want to send full recipe in case info is needed later (like missing ingredients)
+    //       ...recipe,
+    //       // Card is sent as a png, but I'm not sure how to display it later
+    //       card: recipeCardsCall.data.url
+    //     };
+    //   });
+
+    //   // Use Promise.all, which waits for all of the card requests to complete and is useful since we're doing 2 GETs at the same time here
+    //   const recipesAndCards = await Promise.all(recipeCardsPromise);
+
+    //   // Send both recipes (may need missing ingredient info for display) and cards
+    //   res.send(recipesAndCards);
+    // } else {
+    //   res.status(404).send({ message: "No recipe matches found." });
+    // }
 
 module.exports = router;
