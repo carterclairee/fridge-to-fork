@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 
 function Fridge() {
     const [myFridge, setMyFridge] = useState([]);
+    // State to track toggled ingredients
+    const [chooseIngredients, setChooseIngredients] = useState([]);
 
     // Category filters
     const breadIngredients = myFridge.filter(i => i.Category === "bread, cereal, rice, pasta");
@@ -29,6 +31,12 @@ function Fridge() {
             console.log(error);
         }
     };
+
+    const handleIngredientChoose = (ingredientId) => {
+        // When ingredient is clicked, update the selectedIngredients state
+        // if the previous state does include the selected id, filter it out to deselect. If it wasn't already included, add it to the array to select
+        setChooseIngredients((state) => state.includes(ingredientId) ? state.filter(id => id !== ingredientId) : [...state, ingredientId]);
+    }
 
     const handleAddIngredient = async (ingredient) => {
         try {
@@ -93,15 +101,45 @@ function Fridge() {
 
         <div className="fridge-inner">
         {/* Using CategoryTable for display */}
-        <CategoryTable categoryTitle="Bread, Cereal, Rice, and Pasta" ingredients={breadIngredients} onEdit={handleEditIngredient} onDelete={handleDeleteIngredient}/>
+        <CategoryTable 
+            categoryTitle="Bread, Cereal, Rice, and Pasta" 
+            ingredients={breadIngredients} 
+            onEdit={handleEditIngredient} 
+            onDelete={handleDeleteIngredient} 
+            onIngredientChoose={handleIngredientChoose} 
+            chooseIngredients={chooseIngredients}/>
 
-        <CategoryTable categoryTitle="Fruits and Vegetables" ingredients={fruitsIngredients} onEdit={handleEditIngredient} onDelete={handleDeleteIngredient}/>
+        <CategoryTable 
+            categoryTitle="Fruits and Vegetables" 
+            ingredients={fruitsIngredients} 
+            onEdit={handleEditIngredient} 
+            onDelete={handleDeleteIngredient} 
+            onIngredientChoose={handleIngredientChoose} 
+            chooseIngredients={chooseIngredients}/>
 
-        <CategoryTable categoryTitle="Meat, Poultry, Fish, Beans, and Eggs" ingredients={meatIngredients} onEdit={handleEditIngredient} onDelete={handleDeleteIngredient}/>
+        <CategoryTable 
+            categoryTitle="Meat, Poultry, Fish, Beans, and Eggs" 
+            ingredients={meatIngredients} 
+            onEdit={handleEditIngredient} 
+            onDelete={handleDeleteIngredient} 
+            onIngredientChoose={handleIngredientChoose} 
+            chooseIngredients={chooseIngredients}/>
 
-        <CategoryTable categoryTitle="Milk, Yogurt, and Cheese" ingredients={milkIngredients} onEdit={handleEditIngredient} onDelete={handleDeleteIngredient}/>
+        <CategoryTable 
+            categoryTitle="Milk, Yogurt, and Cheese" 
+            ingredients={milkIngredients} 
+            onEdit={handleEditIngredient} 
+            onDelete={handleDeleteIngredient} 
+            onIngredientChoose={handleIngredientChoose} 
+            chooseIngredients={chooseIngredients}/>
 
-        <CategoryTable categoryTitle="Fats, Oils, and Sweets" ingredients={fatsIngredients} onEdit={handleEditIngredient} onDelete={handleDeleteIngredient}/>
+        <CategoryTable 
+            categoryTitle="Fats, Oils, and Sweets" 
+            ingredients={fatsIngredients} 
+            onEdit={handleEditIngredient} 
+            onDelete={handleDeleteIngredient} 
+            onIngredientChoose={handleIngredientChoose} 
+            chooseIngredients={chooseIngredients}/>
         </div>
 
         {/* Render AddIngredientForm */}

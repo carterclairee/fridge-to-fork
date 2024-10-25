@@ -5,7 +5,6 @@ import { useContext } from "react";
 export default function Navbar() {
     
     const { isLoggedIn, logout } = useContext(AuthContext);
-    console.log(isLoggedIn);
 
     return (
         <nav className="navbar navbar-expand-md bg-body-tertiary">

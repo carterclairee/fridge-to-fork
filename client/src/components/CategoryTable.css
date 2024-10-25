@@ -1,0 +1,4 @@
+/* Custom highlight color for selected rows */
+.table-active {
+    background-color: #F6BE9A;
+}

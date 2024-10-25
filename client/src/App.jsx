@@ -48,7 +48,6 @@ function App() {
     <AuthContext.Provider value={authObj}>
       <Navbar />
       <div className="App container p-5">
-      <h1>Fridge to fork</h1>
 
       {/*<Link to="/">Home</Link>
       <Link to="/Login">Login</Link>
