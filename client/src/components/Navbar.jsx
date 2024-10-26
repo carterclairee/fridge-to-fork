@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
+import '../App.css'
 
 export default function Navbar() {
     
@@ -11,7 +12,7 @@ export default function Navbar() {
         <nav className="navbar navbar-expand-md bg-body-tertiary">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
-              Fridge to Fork 🍴
+            <span className="navbar-text">Fridge to Fork</span>🍴
             </Link>
             <button
               className="navbar-toggler"
