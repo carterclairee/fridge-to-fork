@@ -7,9 +7,6 @@ var userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 
 // Full url: http://localhost:4000/api/fridge
 
-// API Key
-const apiKey = "dbb4ce340e4d4777a5966302b1e6b98d";
-
 // Helper function to get fridge contents the same way each time; function takes the user's id as parameter
 // Joined with users to get user's first name and preferences
 async function getFridgeContents(user_id) {
