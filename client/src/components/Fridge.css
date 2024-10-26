@@ -33,6 +33,7 @@
 /* Table Styling */
 .custom-table {
     background-color: #FAF4D3; /* Light background color */
+
 }
 
 .custom-table th, 
@@ -54,7 +55,6 @@
     width: 100%; /* Make the container full width */
     padding: 0;
 }
-
 
 /* To make buttons equal widths */
 .equal-buttons button {

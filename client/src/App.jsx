@@ -4,11 +4,11 @@ import {Register, Login} from './components/Login';
 {/*import Home from './components/Home';*/}
 import Profile from'./components/Profile' 
 import Fridge from './components/Fridge'
-import Recipes from './components/Recipes'
 import axios from "axios";
 import AuthContext from "./context/AuthContext";
 import Navbar from "./components/Navbar.jsx";
 import PrivateRoute from './components/PrivateRoute.jsx';
+import RecipeGallery from './components/RecipeGallery.jsx';
 
 
 import { Routes, Route, Link } from 'react-router-dom';
@@ -63,7 +63,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/Profile" element={ <PrivateRoute> <Profile /></PrivateRoute>} />
         <Route path="/Fridge" element={ <PrivateRoute><Fridge /> </PrivateRoute>} /> 
-        <Route path="/Recipes" element={ <PrivateRoute><Recipes /> </PrivateRoute>} />
+        <Route path="/RecipeGallery" element={ <PrivateRoute><RecipeGallery /> </PrivateRoute>} />
       </Routes>
       
 
