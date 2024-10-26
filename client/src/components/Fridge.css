@@ -6,7 +6,7 @@
     color: white; /* White text */
     text-align: center; /* Center align text */
     margin: 20px auto; /* Center the fridge on the page */
-    width: 100%; /* Full width */
+    width: 90%;
 }
 
 .fridge-outer label {
@@ -63,4 +63,16 @@
 
 .fridge-name {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #FAF4D3;
+}
+
+.recipes-link {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none;
+    color: #F8F9FA;
+}
+
+.recipes-link:hover {
+    color: #000;
+    border-color: #f8f9fa;
 }
