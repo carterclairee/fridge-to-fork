@@ -1,0 +1,39 @@
+
+.login-form-container {
+    max-width: 400px; /* Same width as register */
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #004643; /* Border color same as navbar */
+    border-radius: 8px;
+    background-color: #FAF4D3; /* Background color same as register */
+  }
+  
+  .login-form-container input,
+  .login-form-container button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #004643; /* Field border color same as navbar */
+    border-radius: 4px;
+    background-color: #FAF4D3; /* Field background color same as navbar text */
+    color: #004643; /* Text color to contrast background */
+  }
+  
+  .login-form-container button {
+    background-color: #004643;
+    color: #FAF4D3;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .login-form-container button:hover {
+    background-color: #FAF4D3; /* Invert colors on hover */
+    color: #004643;
+  }
+  
+  .login-form-container p {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #b22222; /* Adjust color for any error messages */
+  }
+  
