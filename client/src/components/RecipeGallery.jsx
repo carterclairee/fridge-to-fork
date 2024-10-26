@@ -26,7 +26,7 @@ export default function RecipeGallery() {
         // Format ingredients into string for Spoonacular
         const ingredientsString = chooseIngredientNames.join(",");
 
-        // Create a params object to manage params better
+        // Create a params object to manage params more easily
         const params = {
             query: ingredientsString,
             apiKey: apiKey,
@@ -35,7 +35,7 @@ export default function RecipeGallery() {
         // Add diet to params if it is available
         if (diet) {
             params.diet = diet;
-        }
+        };
 
         // Can easily add more params conditionally for other filters in future (new component that would be displayed on fridge)
 
@@ -55,13 +55,13 @@ export default function RecipeGallery() {
         } catch (error) {
             console.log("Error fetching recipes: ", error);
         }
-    }
-
-    console.log(recipes);
+    };
 
     useEffect(() => {
         fetchRecipes();
     }, [chooseIngredientNames]);
+
+    console.log(recipes);
 
     return (
         <>
@@ -69,6 +69,7 @@ export default function RecipeGallery() {
             {noMatches ? (<p>{noMatches}</p>) : (<>
 
             <h1>Your Recipes</h1>
+            {/* Make sure the user entered in some ingredients */}
             {chooseIngredientNames.length ? 
 
             (<p>recipes will go here</p>) 
