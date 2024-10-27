@@ -30,6 +30,7 @@ export default function RecipeGallery() {
         const params = {
             query: ingredientsString,
             apiKey: apiKey,
+            addRecipeInformation: true
         };
 
         // Add diet to params if it is available
@@ -70,9 +71,24 @@ export default function RecipeGallery() {
 
             <h1>Your Recipes</h1>
             {/* Make sure the user entered in some ingredients */}
-            {chooseIngredientNames.length ? 
+            {chooseIngredientNames.length ? (
+                <div className="row container">
+                    {recipes.map((recipe) => (
+                        <div key={recipe.id} className="col-md-4 mt-4">
+                            <div className="card">
+                                <div className="image-container">
+                                    <img src={recipe.image} className="recipe-image" alt="recipe image"></img>
+                                </div>
 
-            (<p>recipes will go here</p>) 
+                                <div className="card-body">
+                                    <h5 className="card-title">{recipe.title}</h5>
+                                    <p className="card-text">Ready in {recipe.readyInMinutes} minutes</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            ) 
 
             : <p>Please select ingredients from your fridge to get recipes.</p>}
             </>)}
