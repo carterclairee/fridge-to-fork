@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import './RecipeGallery.css';
 import cutlery from '../assets/cutlery.png';
+import { useNavigate } from "react-router-dom";
 
 // useLocation will get the state passed from navigate
 import { useLocation } from "react-router-dom";
@@ -13,6 +14,9 @@ export default function RecipeGallery() {
     // Access the data from navigate
     const chooseIngredientNames = location.state ? location.state.chooseIngredientNames : [];
     const diet = location.state ? location.state.diet : "";
+    
+    // Set up navigate
+    const navigate = useNavigate();
 
     // If there are no matches
     const [noMatches, setNoMatches] = useState('');
@@ -32,7 +36,8 @@ export default function RecipeGallery() {
         const params = {
             query: ingredientsString,
             apiKey: apiKey,
-            addRecipeInformation: true
+            addRecipeInformation: true,
+            number: 1
         };
 
         // Add diet to params if it is available
@@ -60,11 +65,14 @@ export default function RecipeGallery() {
         }
     };
 
+    // Send user to Recipes and make data availabe there
+    const handleRecipeClick = (recipe) => {
+        navigate("/Recipes", {state: {recipe}});
+    }
+
     useEffect(() => {
         fetchRecipes();
     }, []);
-
-    console.log(recipes);
 
     return (
         <>
@@ -82,7 +90,10 @@ export default function RecipeGallery() {
                 <div className="row container">
                     {recipes.map((recipe) => (
                         <div key={recipe.id} className="col-lg-4 mt-4">
-                            <div className="card">
+                            <div 
+                            className="card" 
+                            onClick={() => handleRecipeClick (recipe)} 
+                            role="button">
                                 <div className="image-container">
                                     <img src={recipe.image} className="recipe-image" alt="recipe image"></img>
                                 </div>
