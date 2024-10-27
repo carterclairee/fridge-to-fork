@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import {Register, Login} from './components/Login';
+import {Login} from './components/Login';
+import Register from './components/Register.jsx';
 {/*import Home from './components/Home';*/}
 import Profile from'./components/Profile' 
 import Fridge from './components/Fridge'
@@ -61,7 +62,7 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/Register" element={<Register />} />
         <Route path="/Profile" element={ <PrivateRoute> <Profile /></PrivateRoute>} />
         <Route path="/Fridge" element={ <PrivateRoute><Fridge /> </PrivateRoute>} /> 
         <Route path="/Recipes" element={ <PrivateRoute><Recipes /> </PrivateRoute>} />
