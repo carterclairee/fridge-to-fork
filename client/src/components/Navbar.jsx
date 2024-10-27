@@ -11,7 +11,7 @@ export default function Navbar() {
         <nav className="navbar navbar-expand-md bg-body-tertiary">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
-            <span className="navbar-text">Fridge to Fork</span>🍴
+            <span className="navbar-text ms-2">Fridge to Fork</span>🍴
             </Link>
             <button
               className="navbar-toggler"
