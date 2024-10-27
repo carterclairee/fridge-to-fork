@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import './RecipeGallery.css';
+import cutlery from '../assets/cutlery.png';
 
 // useLocation will get the state passed from navigate
 import { useLocation } from "react-router-dom";
@@ -17,7 +18,7 @@ export default function RecipeGallery() {
     const [noMatches, setNoMatches] = useState('');
 
     // WILL NEED TO PROTECT THIS LATER
-    const apiKey = "dbb4ce340e4d4777a5966302b1e6b98d";
+    const apiKey = "e6ffc9aee98e4b79a29885d21e3e7077";
 
     // Fetch the recipes from Spoonacular
     const fetchRecipes = async () => {
@@ -61,16 +62,21 @@ export default function RecipeGallery() {
 
     useEffect(() => {
         fetchRecipes();
-    }, [chooseIngredientNames]);
+    }, []);
 
     console.log(recipes);
 
     return (
         <>
             {/* Display no matches message */}
-            {noMatches ? (<p>{noMatches}</p>) : (<>
+            {noMatches ? (<>
+                <div className="message-container pt-5">
+                    <p className="gallery-message">{noMatches}</p>
+                    <img className="cutlery-image pt-3" src={cutlery}></img>
+                </div>
+                </>) : (<>
 
-            <h1>Your Recipes</h1>
+            <h1 className="text-center">Your Recipes</h1>
             {/* Make sure the user entered in some ingredients */}
             {chooseIngredientNames.length ? (
                 <div className="row container">
@@ -91,7 +97,12 @@ export default function RecipeGallery() {
                 </div>
             ) 
 
-            : <p>Please select ingredients from your fridge to get recipes.</p>}
+            : <>
+                <div className="message-container pt-5">
+                    <p className="gallery-message">Please select ingredients from your fridge to get recipes.</p>
+                    <img className="cutlery-image pt-3" src={cutlery}></img>
+                </div>
+            </>}
             </>)}
         </>
     )
