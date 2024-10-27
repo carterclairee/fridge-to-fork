@@ -1,0 +1,40 @@
+
+.register-form-container {
+    max-width: 400px; /* Adjust width as needed */
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #004643; /* Border color same as navbar */
+    border-radius: 8px;
+    background-color: #FAF4D3; /* Background color to match the text color */
+  }
+  
+  .register-form-container input,
+  .register-form-container select,
+  .register-form-container button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #004643; /* Field border color same as navbar */
+    border-radius: 4px;
+    background-color: #FAF4D3; /* Field background color same as navbar text */
+    color: #004643; /* Text color to contrast background */
+  }
+  
+  .register-form-container button {
+    background-color: #004643;
+    color: #FAF4D3;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .register-form-container button:hover {
+    background-color: #FAF4D3; /* Invert colors on hover */
+    color: #004643;
+  }
+  
+  .register-form-container p {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #b22222; /* color for error messages */
+  }
+  

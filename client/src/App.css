@@ -5,12 +5,22 @@
   padding: 2rem;
 }
 
+/*Navbar styling*/
+
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  margin-bottom: 50px;
-  gap: 20px;
+  background-color: #004643 !important;
+}
+
+.navbar .nav-link {
+  color: #FAF4D3 !important;
+}
+
+.navbar .nav-link:hover {
+  color: #abd1c6 !important;
+}
+
+.navbar-text {
+  color: #FAF4D3;
 }
 
 /* To keep the table columns aligned across categories on Fridge view */
