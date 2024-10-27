@@ -1,0 +1,10 @@
+/* images in Recipe Gallery */
+.image-container {
+    overflow: hidden;
+}
+
+.recipe-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
