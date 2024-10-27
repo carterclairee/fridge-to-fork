@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import './RecipeGallery.css';
 
 // useLocation will get the state passed from navigate
 import { useLocation } from "react-router-dom";
@@ -74,7 +75,7 @@ export default function RecipeGallery() {
             {chooseIngredientNames.length ? (
                 <div className="row container">
                     {recipes.map((recipe) => (
-                        <div key={recipe.id} className="col-md-4 mt-4">
+                        <div key={recipe.id} className="col-lg-4 mt-4">
                             <div className="card">
                                 <div className="image-container">
                                     <img src={recipe.image} className="recipe-image" alt="recipe image"></img>

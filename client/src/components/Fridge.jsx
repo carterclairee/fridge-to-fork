@@ -102,6 +102,7 @@ function Fridge() {
 
   return (
     <>
+    <div className="fridge-background">
     <div className="fridge-outer">
         {/* Needed to have something while data was loading, otherwise the app would crash */}
         <h2 className="text-center fridge-name mb-3">{myFridge.length > 0 ? `${myFridge[0].FirstName}'s Fridge` : "Loading..."}</h2>
@@ -159,6 +160,7 @@ function Fridge() {
 
         {/* Render AddIngredientForm */}
         <AddIngredientForm onSubmit={handleAddIngredient} />
+    </div>
     </div>
     </>
   )
