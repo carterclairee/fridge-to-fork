@@ -1,12 +1,16 @@
 import { useState } from "react";
 
-export default function CategoryTable ({ categoryTitle, ingredients, onEdit, onDelete }) {
+export default function CategoryTable ({ categoryTitle, ingredients, onEdit, onDelete, onIngredientChoose, chooseIngredients }) {
     const [selectedIngredient, setSelectedIngredient] = useState({
         id: '',
         Quantity: '',
         Unit: ''
     });
 
+    // When row is clicked, send ingredientId to Fridge to handle
+    const handleRowClick = (ingredientId, ingredientName) => {
+        onIngredientChoose(ingredientId, ingredientName)
+    }
 
     // For editing functionality
     const handleInputChange = (e) => {
@@ -37,7 +41,7 @@ export default function CategoryTable ({ categoryTitle, ingredients, onEdit, onD
     return (
         <>
         <div className="container table-container mb-4">
-        <h4 className="mt-2">{categoryTitle}</h4>
+        <h5 className="mt-2">{categoryTitle}</h5>
         {ingredients.length > 0 ? 
             <table className="table table-hover table-borderless custom-table">
                 <thead>
@@ -51,7 +55,11 @@ export default function CategoryTable ({ categoryTitle, ingredients, onEdit, onD
                 </thead>
                 <tbody>
                     {ingredients.map(ingredient => (
-                        <tr key={ingredient.id}>
+                        <tr key={ingredient.id} 
+                            // When row is clicked, take in the ingredient id
+                            onClick={() => handleRowClick(ingredient.id, ingredient.Ingredient)} 
+                            className={chooseIngredients.includes(ingredient.id) ? 'table-active' : ''} 
+                            role="button">
                             <td>{ingredient.Ingredient}</td>
                             <td>{ingredient.ExpirationDate.split('T')[0]}</td>
                             {/* If ingredient is being edited, show input fields */}
