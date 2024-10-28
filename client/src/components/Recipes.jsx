@@ -6,8 +6,6 @@ function Recipes () {
     const location = useLocation();
     const recipe = location.state ? location.state.recipe : {};
 
-    console.log(recipe);
-
     return (
         <>
         <div className="row d-flex">

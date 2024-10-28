@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function AddIngredientForm({ onSubmit }) {
     const [ingredient, setIngredient] = useState({
@@ -19,10 +21,21 @@ function AddIngredientForm({ onSubmit }) {
         setIngredient(state => ({...state, [name]: value}));
     };
 
+    // For datepicker
+    const handleDateChange = (date) => {
+        setIngredient(state => ({...state, ExpirationDate: date}));
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        // format the date from react datepicker
+        const formattedIngredient = {
+            ...ingredient,
+            ExpirationDate: ingredient.ExpirationDate.toISOString().split('T')[0].replace(/-/g, '')
+        };
 
-        onSubmit(ingredient);
+        onSubmit(formattedIngredient);
 
         setSuccess(true);
 
@@ -64,15 +77,6 @@ function AddIngredientForm({ onSubmit }) {
                             <label htmlFor="floatingInput1">Ingredient</label>
                         </div>
 
-                        {/* Expiration Date */}
-                        <div className="form-floating">
-                            <input type="text" className="form-control mb-1" id="floatingInput2" placeholder="text"
-                            value={ingredient.ExpirationDate}
-                            name="ExpirationDate"
-                            onChange={e => handleInput(e)}/>
-                            <label htmlFor="floatingInput2">Expiration (yyyymmdd)</label>
-                        </div>
-
                         {/* Category */}
                         <div className="form-floating">
                             <select 
@@ -109,6 +113,19 @@ function AddIngredientForm({ onSubmit }) {
                             name="Unit"
                             onChange={e => handleInput(e)}/>
                             <label htmlFor="floatingInput5">Unit</label>
+                        </div>
+
+                        {/* Expiration Date */}
+                        <div className="mb-3">
+                                <label htmlFor="expirationDate" className="form-label me-3">Expiration Date (yyyymmdd)</label>
+                                <DatePicker 
+                                    selected={ingredient.ExpirationDate} 
+                                    onChange={handleDateChange} 
+                                    dateFormat="yyyy-MM-dd" 
+                                    className="form-control" 
+                                    id="expirationDate"
+                                    placeholderText="Select a date"
+                                />
                         </div>
 
                         {/* Button */}
