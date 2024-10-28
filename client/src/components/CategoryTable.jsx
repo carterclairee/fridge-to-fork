@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './css/CategoryTable.css';
 
 export default function CategoryTable ({ categoryTitle, ingredients, onEdit, onDelete, onIngredientChoose, chooseIngredients }) {
     const [selectedIngredient, setSelectedIngredient] = useState({
@@ -60,8 +61,8 @@ export default function CategoryTable ({ categoryTitle, ingredients, onEdit, onD
                             onClick={() => handleRowClick(ingredient.id, ingredient.Ingredient)} 
                             className={chooseIngredients.includes(ingredient.id) ? 'table-active' : ''} 
                             role="button">
-                            <td>{ingredient.Ingredient}</td>
-                            <td>{ingredient.ExpirationDate.split('T')[0]}</td>
+                            <td className="table-text">{ingredient.Ingredient}</td>
+                            <td className="table-text">{ingredient.ExpirationDate.split('T')[0]}</td>
                             {/* If ingredient is being edited, show input fields */}
                             {selectedIngredient.id === ingredient.id ? (
                                 <>
@@ -99,8 +100,8 @@ export default function CategoryTable ({ categoryTitle, ingredients, onEdit, onD
                                 </>
                             ) : (
                                 <>
-                                <td>{ingredient.Quantity} {ingredient.Unit}</td>
-                                <td>
+                                <td className="table-text">{ingredient.Quantity} {ingredient.Unit}</td>
+                                <td className="table-text">
                                 {/* Edit */}
                                 <div>
                                     <i 
@@ -109,7 +110,7 @@ export default function CategoryTable ({ categoryTitle, ingredients, onEdit, onD
                                     className="fa-regular fa-pen-to-square"></i>
                                 </div>
                                 </td>
-                                <td>
+                                <td className="table-text">
                                 {/* Delete */}
                                 <div>
                                     <i 
@@ -124,7 +125,7 @@ export default function CategoryTable ({ categoryTitle, ingredients, onEdit, onD
                     ))}
                 </tbody>
             </table>
-        : <p>No ingredients in this food group</p>}
+        : <p className="table-text">No ingredients in this food group</p>}
         </div>
         </>
     )

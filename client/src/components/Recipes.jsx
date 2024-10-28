@@ -1,6 +1,6 @@
 // useLocation will get the state passed from navigate
 import { useLocation } from "react-router-dom";
-import './Recipes.css';
+import './css/Recipes.css';
 
 function Recipes () {
     const location = useLocation();
@@ -11,11 +11,13 @@ function Recipes () {
     return (
         <>
         <div className="row d-flex">
-            <div className="col-md-4 align-self-center">
-            <img src={recipe.image}></img>
+            <div className="col-md-4">
+                <div className="recipe-image-container">
+                <img className="full-recipe-image" src={recipe.image}></img>
+                </div>
             </div>
 
-            <div className="col-md-8">
+            <div className="col-md-8 align-self-center">
             <h1>{recipe.title}</h1>
                 <p className="mt-4 recipe-info">Ready in {recipe.readyInMinutes} minutes</p>
                 <p className="recipe-info">Servings: {recipe.servings}</p>
@@ -26,7 +28,7 @@ function Recipes () {
         <div className="row mt-5">
             <div className="col-md-4">
                 <div className="custom-separator">
-                <h4>Ingredients</h4>
+                <h4 className="mb-3">Ingredients</h4>
                 {recipe.extendedIngredients.map(ingredient => (
                     <p key={ingredient.id}>{ingredient.measures.metric.amount} {ingredient.measures.metric.unitLong} {ingredient.name}</p>
                 ))}
@@ -36,7 +38,7 @@ function Recipes () {
 
             <div className="col-md-8">
                 <div className="custom-separator">
-                <h4>Instructions</h4>
+                <h4 className="mb-3">Instructions</h4>
                 {recipe.analyzedInstructions[0].steps.map(step => (
                     <div key={step.number}>
                         <h5>Step {step.number}</h5>

@@ -2,7 +2,7 @@ import AddIngredientForm from './AddIngredientForm';
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import CategoryTable from './CategoryTable';
-import './Fridge.css';
+import './css/Fridge.css';
 import { useNavigate } from "react-router-dom";
 
 function Fridge() {
