@@ -9,10 +9,12 @@ function AddIngredientForm({ onSubmit }) {
         Category: "",
         Quantity: "",
         Unit: ""
-    })
+    });
 
     // For message that ingredient was added successfully
     const [success, setSuccess] = useState(false);
+    // If user tries to submit form without filling in all parts
+    const [formError, setFormError] = useState("");
 
     const handleInput = (e) => {
         const value = e.target.value;
@@ -28,17 +30,34 @@ function AddIngredientForm({ onSubmit }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Check if form fields are filled
+        if (!ingredient.Ingredient || !ingredient.ExpirationDate || !ingredient.Category || !ingredient.Quantity || !ingredient.Unit) {
+            setFormError("Please fill out all form fields.");
+            return;
+        } else {
+            setFormError("");
+        }
+
+        // check if quantity is a number
+        const quantityNumber = Number(ingredient.Quantity);
+        if (isNaN(quantityNumber)) {
+            setFormError("Please enter a number for quantity.");
+            return;
+        } else {
+            setFormError("");
+        }
         
         // format the date from react datepicker
         const formattedIngredient = {
             ...ingredient,
             ExpirationDate: ingredient.ExpirationDate.toISOString().split('T')[0].replace(/-/g, '')
         };
-
+ 
         onSubmit(formattedIngredient);
 
         setSuccess(true);
-
+    
         setIngredient({
             Ingredient: "",
             ExpirationDate: "",
@@ -46,7 +65,7 @@ function AddIngredientForm({ onSubmit }) {
             Quantity: "",
             Unit: ""
         });
-
+    
         // Clear success message after a delay
         setTimeout(() => {
             setSuccess(false);  // Hide success message after 3 seconds
@@ -137,6 +156,13 @@ function AddIngredientForm({ onSubmit }) {
                                 <div className="d-flex align-items-center">
                                     <i className="fa-solid fa-circle-check" style={{ color: '#0C1618', marginRight: '8px' }}></i>
                                     <p className="mb-0">Ingredient added!</p>
+                                </div>
+                            )}
+
+                            {/* Form error message if fields are blank */}
+                            {formError && (
+                                <div className="d-flex align-items-center">
+                                    <p className="mb-0">{formError}</p>
                                 </div>
                             )}
                         </div>

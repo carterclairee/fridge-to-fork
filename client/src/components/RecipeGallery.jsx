@@ -98,7 +98,7 @@ export default function RecipeGallery() {
                             onClick={() => handleRecipeClick (recipe)} 
                             role="button">
                                 <div className="image-container">
-                                    <img src={recipe.image} className="recipe-image" alt="recipe image"></img>
+                                    <img src={recipe.image} className="card-image-top" alt="recipe image"></img>
                                 </div>
 
                                 <div className="card-body">
