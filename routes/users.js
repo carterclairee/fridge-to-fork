@@ -82,10 +82,15 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/profile", userShouldBeLoggedIn, (req, res) => {
-  res.send({
-    message: "Here is the PROTECTED data for user " + req.user_id,
-  });
+router.get("/profile", userShouldBeLoggedIn, async (req, res) => {
+  // res.send({
+  //   message: "Here is the PROTECTED data for user " + req.user_id,
+  // });
+  const result = await db(
+    `SELECT * FROM User WHERE id = ${req.user_id}`
+  
+  );
+  res.send(result.data[0]);
 });
 
 //change the preference
