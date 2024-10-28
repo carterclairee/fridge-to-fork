@@ -1,22 +1,22 @@
 .recipe-info {
-    font-size: 20px;
-    padding: 0px;
-    margin: 0px;
+  font-size: 20px;
+  padding: 0px;
+  margin: 0px;
 }
 
 .custom-separator {
-    border-top: 3px solid #D1AC00;
-    padding-top: 15px;
-  }
+  border-top: 3px solid #D1AC00;
+  padding-top: 15px;
+}
 
-  p {
-    font-size: 18px;
-  }
+.recipes-p {
+  font-size: 20px;
+}
 
 .recipe-image-container {
-    overflow: hidden;
-    width: 100%;
-    height: auto;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
 }
 
 .full-recipe-image {

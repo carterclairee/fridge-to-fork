@@ -2,7 +2,7 @@
     border: 3px solid #003e3b; /* Dark border for the outer fridge */
     border-radius: 10px 10px 0 0; /* Rounded corners at the top */
     padding: 20px; /* Space inside the outer fridge */
-    background-color: #004643; /* Dark background for the outer fridge */
+    background-color:#004643 ; /* Dark background for the outer fridge */
     color: white; /* White text */
     text-align: center; /* Center align text */
     margin: 20px auto; /* Center the fridge on the page */
@@ -25,20 +25,20 @@
     border: 3px solid #eee9ca; /* Light border for the inner fridge */
     border-radius: 10px 10px 0 0; /* Rounded corners at the top */
     padding: 20px; /* Space inside the inner fridge */
-    background-color: #FAF4D3; /* Light background color for the inner fridge */
+    background-color: white; /* Light background color for the inner fridge */
     color: #0C1618; /* Dark text color */
     margin: 20px auto; /* Add some margin space */
 }
 
 /* Table Styling */
 .custom-table {
-    background-color: #FAF4D3; /* Light background color */
+    background-color: white; /* Light background color */
 
 }
 
 .custom-table th, 
 .custom-table td {
-    background-color: #FAF4D3; /* background for header and cells */
+    background-color: white; /* background for header and cells */
 }
 
 .custom-table thead th {
