@@ -1,0 +1,28 @@
+
+.home-container {
+    position: relative;
+    text-align: center;
+    color: #004643; /* Text color similar to the navbar */
+  }
+  
+  .home-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 500px; /* Adjust as needed */
+    object-fit: cover;
+  }
+  
+  .text-field {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FAF4D3; /* Text color similar to navbar text */
+    background: rgba(0, 0, 0, 0.6); /* Slight dark overlay for readability */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  
+  

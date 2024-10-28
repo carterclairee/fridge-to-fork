@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import {Login} from './components/Login';
 import Register from './components/Register.jsx';
-{/*import Home from './components/Home';*/}
+import Home from './components/Home';
 import Profile from'./components/Profile' 
 import Fridge from './components/Fridge'
 import axios from "axios";
@@ -60,7 +60,7 @@ function App() {
       
 
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<Home />} /> 
         <Route path="/login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/Profile" element={ <PrivateRoute> <Profile /></PrivateRoute>} />
