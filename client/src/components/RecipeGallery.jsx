@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import './RecipeGallery.css';
+import cutlery from '../assets/cutlery.png';
+import { useNavigate } from "react-router-dom";
 
 // useLocation will get the state passed from navigate
 import { useLocation } from "react-router-dom";
@@ -12,12 +14,15 @@ export default function RecipeGallery() {
     // Access the data from navigate
     const chooseIngredientNames = location.state ? location.state.chooseIngredientNames : [];
     const diet = location.state ? location.state.diet : "";
+    
+    // Set up navigate
+    const navigate = useNavigate();
 
     // If there are no matches
     const [noMatches, setNoMatches] = useState('');
 
     // WILL NEED TO PROTECT THIS LATER
-    const apiKey = "dbb4ce340e4d4777a5966302b1e6b98d";
+    const apiKey = "e6ffc9aee98e4b79a29885d21e3e7077";
 
     // Fetch the recipes from Spoonacular
     const fetchRecipes = async () => {
@@ -31,7 +36,11 @@ export default function RecipeGallery() {
         const params = {
             query: ingredientsString,
             apiKey: apiKey,
-            addRecipeInformation: true
+            addRecipeInformation: true,
+            number: 1,
+            instructionsRequired: true,
+            addRecipeInstructions: true,
+            fillIngredients: true,
         };
 
         // Add diet to params if it is available
@@ -59,31 +68,45 @@ export default function RecipeGallery() {
         }
     };
 
+    // Send user to Recipes and make data availabe there
+    const handleRecipeClick = (recipe) => {
+        navigate("/Recipes", {state: {recipe}});
+    }
+
     useEffect(() => {
         fetchRecipes();
-    }, [chooseIngredientNames]);
-
-    console.log(recipes);
+    }, []);
 
     return (
         <>
             {/* Display no matches message */}
-            {noMatches ? (<p>{noMatches}</p>) : (<>
+            {noMatches ? (<>
+                <div className="message-container pt-5">
+                    <p className="gallery-message">{noMatches}</p>
+                    <img className="cutlery-image pt-3" src={cutlery}></img>
+                </div>
+                </>) : (<>
 
-            <h1>Your Recipes</h1>
+            <h1 className="text-center">Your Recipes</h1>
             {/* Make sure the user entered in some ingredients */}
             {chooseIngredientNames.length ? (
                 <div className="row container">
                     {recipes.map((recipe) => (
                         <div key={recipe.id} className="col-lg-4 mt-4">
-                            <div className="card">
+                            <div 
+                            className="card" 
+                            onClick={() => handleRecipeClick (recipe)} 
+                            role="button">
                                 <div className="image-container">
                                     <img src={recipe.image} className="recipe-image" alt="recipe image"></img>
                                 </div>
 
                                 <div className="card-body">
                                     <h5 className="card-title">{recipe.title}</h5>
+                                    <div>
                                     <p className="card-text">Ready in {recipe.readyInMinutes} minutes</p>
+                                    <p>{recipe.diets.join(", ")}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +114,12 @@ export default function RecipeGallery() {
                 </div>
             ) 
 
-            : <p>Please select ingredients from your fridge to get recipes.</p>}
+            : <>
+                <div className="message-container pt-5">
+                    <p className="gallery-message">Please select ingredients from your fridge to get recipes.</p>
+                    <img className="cutlery-image pt-3" src={cutlery}></img>
+                </div>
+            </>}
             </>)}
         </>
     )

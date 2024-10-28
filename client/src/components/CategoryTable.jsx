@@ -56,7 +56,7 @@ export default function CategoryTable ({ categoryTitle, ingredients, onEdit, onD
                 <tbody>
                     {ingredients.map(ingredient => (
                         <tr key={ingredient.id} 
-                            // When row is clicked, take in the ingredient id
+                            // When row is clicked, take in the ingredient id and name
                             onClick={() => handleRowClick(ingredient.id, ingredient.Ingredient)} 
                             className={chooseIngredients.includes(ingredient.id) ? 'table-active' : ''} 
                             role="button">

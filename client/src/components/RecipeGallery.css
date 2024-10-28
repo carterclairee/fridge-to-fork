@@ -1,4 +1,8 @@
 /* images in Recipe Gallery */
+.card {
+    width: 300px;
+    height: 400px;
+}
 .image-container {
     overflow: hidden;
 }
@@ -8,3 +12,19 @@
     height: 100%;
     object-fit: cover;
 }
+
+.message-container {
+    text-align: center;
+}
+
+.gallery-message {
+    font-size: 30px;
+}
+
+.cutlery-image {
+    max-width: 150px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+}
+  
