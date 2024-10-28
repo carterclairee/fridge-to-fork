@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import './RecipeGallery.css';
+import './css/RecipeGallery.css';
 import cutlery from '../assets/cutlery.png';
 import { useNavigate } from "react-router-dom";
 
@@ -37,7 +37,7 @@ export default function RecipeGallery() {
             query: ingredientsString,
             apiKey: apiKey,
             addRecipeInformation: true,
-            number: 1,
+            number: 5,
             instructionsRequired: true,
             addRecipeInstructions: true,
             fillIngredients: true,
