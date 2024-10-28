@@ -1,4 +1,8 @@
 /* images in Recipe Gallery */
+.card {
+    width: 300px;
+    height: 400px;
+}
 .image-container {
     overflow: hidden;
 }

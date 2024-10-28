@@ -37,7 +37,10 @@ export default function RecipeGallery() {
             query: ingredientsString,
             apiKey: apiKey,
             addRecipeInformation: true,
-            number: 1
+            number: 1,
+            instructionsRequired: true,
+            addRecipeInstructions: true,
+            fillIngredients: true,
         };
 
         // Add diet to params if it is available
@@ -100,7 +103,10 @@ export default function RecipeGallery() {
 
                                 <div className="card-body">
                                     <h5 className="card-title">{recipe.title}</h5>
+                                    <div>
                                     <p className="card-text">Ready in {recipe.readyInMinutes} minutes</p>
+                                    <p>{recipe.diets.join(", ")}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
