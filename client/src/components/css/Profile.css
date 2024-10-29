@@ -2,6 +2,7 @@
 
     .labels {
         font-size: 16px;
+        padding: 15px;
         border: 1px;
     border-style: solid;
     /* background-color: #45a049; */
@@ -11,7 +12,7 @@
       .profile-form-container {
         max-width: 400px; /* Adjust width as needed */
         margin: 0 auto;
-        padding: 20px;
+        padding: 40px;
         border: 2px solid #004643; /* Border color same as navbar */
         border-radius: 8px;
         background-color: #FAF4D3; /* Background color to match the text color */
@@ -19,11 +20,13 @@
 
       .button-container {
         display: flex;
+        justify-content: space-between;
+        padding-top: 8px;
       }
 
-      .profile-edit button {
+      .profile-button {
         /* width: 50%; */
-        padding: 10px;
+        padding: 15px;
         margin-bottom: 15px;
         border: 1px solid #004643; /* Field border color same as navbar */
         border-radius: 4px;
@@ -33,15 +36,17 @@
         cursor: pointer;
       }
 
-      .profile-delete-button {
-        /* width: 50%; */
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #004643; /* Field border color same as navbar */
-        border-radius: 4px;
-        background-color: #004643;
-        color: #FAF4D3;
-        font-weight: bold;
-        cursor: pointer;
+      .fridge-background::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../../assets/megan-thomas-xMh_ww8HN_Q-unsplash.jpg');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.3; /* Adjust opacity */
+        z-index: -1; /* Ensures the image is behind the content */
       }
     
