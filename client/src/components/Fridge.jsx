@@ -105,7 +105,7 @@ function Fridge() {
     <div className="fridge-background">
     <div className="fridge-outer">
         {/* Needed to have something while data was loading, otherwise the app would crash */}
-        <h1 className="text-center fridge-name mb-3">{myFridge.length > 0 ? `${myFridge[0].FirstName}'s Fridge` : "Loading..."}</h1>
+        <h1 className="text-center fridge-name mb-3">Check the Fridge</h1>
 
         <div className="equal-buttons">
             {/* Button to open AddIngredientForm modal */}
