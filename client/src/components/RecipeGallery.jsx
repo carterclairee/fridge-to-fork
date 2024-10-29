@@ -94,17 +94,17 @@ export default function RecipeGallery() {
                     {recipes.map((recipe) => (
                         <div key={recipe.id} className="col-lg-4 mt-4">
                             <div 
-                            className="card" 
+                            className="custom-card" 
                             onClick={() => handleRecipeClick (recipe)} 
                             role="button">
                                 <div className="image-container">
-                                    <img src={recipe.image} className="card-image-top" alt="recipe image"></img>
+                                    <img src={recipe.image} className="card-image" alt="recipe image"></img>
                                 </div>
 
-                                <div className="card-body">
-                                    <h5 className="card-title">{recipe.title}</h5>
+                                <div className="card-content">
+                                    <h4>{recipe.title}</h4>
                                     <div>
-                                    <p className="card-text">Ready in {recipe.readyInMinutes} minutes</p>
+                                    <p>Ready in {recipe.readyInMinutes} minutes</p>
                                     <p>{recipe.diets.join(", ")}</p>
                                     </div>
                                 </div>
