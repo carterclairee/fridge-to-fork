@@ -137,6 +137,24 @@ router.delete("/", userShouldBeLoggedIn, async (req, res) => {
   }
 });
 
+// PUT to edit profile
+router.put("/:id", userShouldBeLoggedIn, async (req, res) => {
+  const { id } = req.params; // User ID from the route parameter
+  const { UserName, Email, FirstName, LastName, Preference } = req.body; // Editable fields
+
+  try {
+    await db(
+      `UPDATE User SET UserName = "${UserName}", Email = "${Email}", 
+      FirstName = "${FirstName}", LastName = "${LastName}", Preference = "${Preference}" 
+      WHERE id = ${id};`
+    );
+    res.send({ message: "User profile updated successfully" });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+
 
 
 module.exports = router;
