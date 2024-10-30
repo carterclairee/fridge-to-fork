@@ -87,7 +87,7 @@ export default function RecipeGallery() {
                 </div>
                 </>) : (<>
 
-            <h1 className="text-center">Your Recipes</h1>
+            <h1 className="text-center">Let's make...</h1>
             {/* Make sure the user entered in some ingredients */}
             {chooseIngredientNames.length ? (
                 <div className="row container">
