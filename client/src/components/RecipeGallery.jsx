@@ -37,7 +37,7 @@ export default function RecipeGallery() {
             query: ingredientsString,
             apiKey: apiKey,
             addRecipeInformation: true,
-            number: 4,
+            number: 9,
             instructionsRequired: true,
             addRecipeInstructions: true,
             fillIngredients: true,
