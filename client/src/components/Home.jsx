@@ -17,15 +17,8 @@ return (
         {/*isLoggedIn && <p className="greeting">Hello, welcome back!</p> */} 
 
         <p className="app-description">
-          Fridge to Fork helps you make the most of what’s already in your fridge, 
-          connecting you with recipes that use up ingredients you have on hand. By matching 
-          your available ingredients with creative meal ideas, our app encourages resourcefulness, 
-          saves you money, and reduces food waste—all while making meal planning easier. Whether 
-          you’re looking to save on your grocery budget or make environmentally conscious choices, 
-          Fridge to Fork turns what you have into delicious, sustainable meals.
+          Make the most of what’s already in your fridge. Save money on your grocery budget, help the environment by reducing food waste, and do it all while eating delicious meals.
         </p>
-
-
 
         </div>
          <div className="image-container">
