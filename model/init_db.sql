@@ -1,8 +1,8 @@
---
---
--- Create Tables
---
+-- Drop Fridge first as it has on delete cascade as a constraint
+DROP TABLE if exists Fridge;
+DROP TABLE if exists User;
 
+-- Create Tables
 CREATE TABLE `User`(
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `UserName` VARCHAR(255) NOT NULL UNIQUE,
