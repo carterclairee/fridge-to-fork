@@ -14,6 +14,6 @@ import react from '@vitejs/plugin-react'
           secure: false 
         }, 
       }, 
-    }, 
+    },
   })
 

@@ -29,7 +29,7 @@ Fridge to Fork lets users keep track of food they already have and matches what'
   <li>Back end: Node.js, Express</li>
   <li>Database: MySQL</li>
   <li>API: Spoonacular</li>
-  <li>Other tools: Git, GitHub, Postman</li>
+  <li>Other tools: Git, GitHub, Postman, Vite</li>
 </ul>
 
 ## Installation

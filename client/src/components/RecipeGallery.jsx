@@ -22,7 +22,7 @@ export default function RecipeGallery() {
     const [noMatches, setNoMatches] = useState('');
 
     // WILL NEED TO PROTECT THIS LATER
-    const apiKey = "e6ffc9aee98e4b79a29885d21e3e7077";
+    const apiKey = import.meta.env.VITE_API_KEY;
 
     // Fetch the recipes from Spoonacular
     const fetchRecipes = async () => {
