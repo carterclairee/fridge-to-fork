@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const db = require("../model/helper");
+const axios = require('axios');
 
 // For protecting endpoints
 var userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
@@ -44,9 +45,7 @@ router.post("/", userShouldBeLoggedIn, async (req, res) => {
   }
 });
 
-// GET ingredients and match recipes
-// This enpoint also accepts query params from the user on the front end when they click on an ingredient, and then 
-
+// GET ingredients
 router.get("/", userShouldBeLoggedIn, async (req, res) => {
   const user_id = req.user_id;
 

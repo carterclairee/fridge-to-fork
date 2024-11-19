@@ -6,6 +6,7 @@ const cors = require('cors');
 
 var fridgeRouter = require('./routes/fridge');
 var usersRouter = require('./routes/users');
+var spoonacularRouter = require('./routes/spoonacular');
 
 var app = express();
 
@@ -19,5 +20,6 @@ app.use(cookieParser());
 
 app.use('/api/fridge', fridgeRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/spoonacular', spoonacularRouter)
 
 module.exports = app;
