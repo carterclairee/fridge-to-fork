@@ -13,16 +13,12 @@ export default function RecipeGallery() {
     const location = useLocation();
     // Access the data from navigate
     const chooseIngredientNames = location.state ? location.state.chooseIngredientNames : [];
-    const diet = location.state ? location.state.diet : "";
     
     // Set up navigate
     const navigate = useNavigate();
 
     // If there are no matches
     const [noMatches, setNoMatches] = useState('');
-
-    // WILL NEED TO PROTECT THIS LATER
-    const apiKey = import.meta.env.VITE_API_KEY;
 
     // Fetch the recipes from Spoonacular
     const fetchRecipes = async () => {
@@ -32,37 +28,25 @@ export default function RecipeGallery() {
         // Format ingredients into string for Spoonacular
         const ingredientsString = chooseIngredientNames.join(",");
 
-        // Create a params object to manage params more easily
-        const params = {
-            query: ingredientsString,
-            apiKey: apiKey,
-            addRecipeInformation: true,
-            number: 9,
-            instructionsRequired: true,
-            addRecipeInstructions: true,
-            fillIngredients: true,
-        };
-
-        // Add diet to params if it is available
-        if (diet) {
-            params.diet = diet;
-        };
-
-        // Can easily add more params conditionally for other filters in future (new component that would be displayed on fridge)
-
-        // Call Spoonacular
+        // Call Spoonacular endpoint
         try {
-            const {data} = await axios.get('https://api.spoonacular.com/recipes/complexSearch', {params});
+            const {data} = await axios.get("/api/spoonacular", {
+                params: {
+                    ingredients: ingredientsString
+                },
+                headers: {
+                    authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            });
 
             // Check if there are any matches
-            if (data.results.length) {
-                setRecipes(data.results);
+            if (data.length) {
+                setRecipes(data);
                 setNoMatches("");
             } else {
                 setRecipes([]);
                 setNoMatches("No recipes found for your selections.")
             }
-
         } catch (error) {
             console.log("Error fetching recipes: ", error);
         }
@@ -75,7 +59,7 @@ export default function RecipeGallery() {
 
     useEffect(() => {
         fetchRecipes();
-    }, []);
+    }, [chooseIngredientNames]);
 
     return (
         <>

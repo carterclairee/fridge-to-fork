@@ -23,9 +23,6 @@ router.get('/', userShouldBeLoggedIn, async (req, res) => {
     }
 
     try {
-        // format ingredients for search
-        // DOUBLE CHECK ON WHAT IS COMING FROM FRONT END TO SEE IF SPLIT IS NEEDED
-    
         // Params for the API call
         const params = {
             query: ingredients,

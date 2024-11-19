@@ -30,7 +30,7 @@ function Fridge() {
             const {data} = await axios("/api/fridge", {
                 headers: {
                     authorization: "Bearer " + localStorage.getItem("token"),
-                  }
+                }
             });
             setMyFridge(data);
             setDiet(data[0].Preference.toLowerCase());
