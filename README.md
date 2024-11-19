@@ -16,98 +16,80 @@ A meal planning app to help users match what's in their fridge and pantry to rec
 Fridge to Fork lets users keep track of food they already have and matches what's in their pantries with recipes. Users can also filter by dietary needs and preferences so they get meals tailored to their ingredients and needs. We want users to save money on grocery costs and help the environment by reducing food waste, all while having delicious meals. Fridge to Fork was built as a collaborative project and it showcases my skills in full stack web development, including database design, API integration, and user experience.
 
 ## Features
-<ul>
-  <li>User authentication</li>
-  <li>Search for recipes based on ingredients entered by user</li>
-  <li>Recipes filtered based on user's dietary preference (such as vegetarian, gluten free, etc.)</li>
-  <li>Mobile-responsive design</li>
-</ul>
+- User authentication
+- Search for recipes based on ingredients entered by user
+- Recipes filtered based on user's dietary preference (such as vegetarian, gluten free, etc.)
+- Mobile-responsive design
 
 ## Technologies Used
-<ul>
-  <li>Front end: React, CSS, Bootstrap</li>
-  <li>Back end: Node.js, Express</li>
-  <li>Database: MySQL</li>
-  <li>API: Spoonacular</li>
-  <li>Other tools: Git, GitHub, Postman, Vite</li>
-</ul>
+- Front end: React, CSS, Bootstrap
+- Back end: Node.js, Express
+- Database: MySQL
+- API: Spoonacular
+- Other tools: Git, GitHub, Postman, Vite
 
 ## Installation
-<ol>
-  <li>Clone the repository:<br>
-    <code>git clone https://github.com/your-username/Claire-Fridge-to-Fork</code>
-  </li>
+1. Clone the repository:  
+  `git clone https://github.com/your-username/Claire-Fridge-to-Fork`
 
-  <li>Navigate to the project directory:<br>
-    <code>cd claire-fridge-to-fork</code>
-  </li>
+2. Navigate to the project directory:  
+  `cd claire-fridge-to-fork`
 
-  <li>Install server-related dependences, such as Express:<br>
-    <code>npm install</code>
-  </li>
+3. Install server-related dependences, such as Express:  
+  `npm install`
 
-  <li>Install front end dependencies, such as React, on the client side:<br>
-    <code>cd client</code><br>
-    <code>npm install</code>
-  </li>
+4. Install front end dependencies, such as React, on the client side:  
+  `cd client`  
+  `npm install`
 
-  <li>Set up the database
-    <ul>
-      <li>Access the MySQL interface:<br>
-      Mac users: In your terminal, enter <code>mysql -u root -p</code><br>
-      PC users: Search MySQL Command Line Client
-      </li>
-      <li>Create a new database:<br>
-      <code>create database ecg</code>
-      </li>
-      <li> Add a <code>.env</code> file to the project folder of this repository containing your MySQL authentication information. For example:
-        <pre>
-    DB_HOST=localhost
-    DB_USER=root
-    DB_NAME=ecg
-    DB_PASS=YOURPASSWORD
-    SUPER_SECRET=SOMEPASSWORD
-      </pre>
-      </li>
-      <li>Migrate the database and create the tables in the main folder of the repository:<br>
-      <code>cd ..</code> (if still in the client folder)<br>
-      <code>npm run migrate</code>
-      </li>
-    </ul>
-  </li>
+5. [Set up a free Spoonacular account](https://spoonacular.com/food-api) to get an API key. Save your key for the next step. It will be hidden in an .env file so it won't be available on GitHub should you fork the repository and make it public.
 
-  <li>Start the Express servier on port 4000:<br>
-    <code>npm start</code>
-  </li>
+6. Set up the database
+    - Access the MySQL interface:  
+    **Mac users:** In your terminal, enter `mysql -u root -p`  
+    **PC users:** Search MySQL Command Line Client
 
-  <li>Express needs that terminal to run. Open a new terminal to start the client in port 5173:<br>
-    <code>cd client</code><br>
-    <code>npm run dev</code><br>
-    Click on the link or copy and paste it into your browser, and you can use the app!
-  </li>
-</ol>
+    - Create a new database:  
+    `create database ecg`
+  
+    - Add a `.env` file to the project folder of this repository containing your MySQL authentication information, a super secret password for use in the guard, and your Spoonacular API key. For example:  
+      ```bash
+      DB_HOST=localhost
+      DB_USER=root
+      DB_NAME=ecg
+      DB_PASS=YOURPASSWORDHERE
+      SUPER_SECRET=SOMEPASSWORDHERE
+      SPOONACULAR_API_KEY=YOURAPIKEYHERE
+      ```
+    - Migrate the database and create the tables in the main folder of the repository:  
+    `cd ..` (if still in the client folder)  
+    `npm run migrate`
+
+7. Start the Express servier on port 4000:  
+`npm start`
+
+8. Express needs that terminal to run. Open a new terminal to start the client in port 5173:  
+  `cd client`  
+  `npm run dev`  
+  Click on the link or copy and paste it into your browser, and you can use the app!
 
 ## My Contributions
 As a team, we developed the idea for the app and decided on its features. My individual contributions included: 
-<ul>
-  <li>Wireframing the app and deciding the functionality of each part</li>
-  <li>All endpoints on the server related to the Fridge view</li>
-  <li>Functionality and design of the Fridge view, including the Add Ingredient form</li>
-  <li>Functionality and design of the Recipe Gallery, including connecting the Spoonacular API</li>
-  <li>Functionality and design of Recipe view</li>
-</ul>
+- Wireframing the app and deciding the functionality of each part
+- All endpoints on the server related to the Fridge view
+- Functionality and design of the Fridge view, including the Add Ingredient form
+- Functionality and design of the Recipe Gallery, including connecting the Spoonacular API
+- Functionality and design of Recipe view
 
 ## Screenshots
 TO DO
 
 ## Future Features
-<ul>
-  <li>Imperial to metric conversion toggle on Recipe view</li>
-  <li>Additional filters for recipes on the Fridge view (time to make, more dietary restrictions, etc.)</li>
-  <li>Password change feature on Profile view</li>
-  <li>Create grocery list feature, taking into account items already in pantry</li>
-  <li>Favorite recipes function and view</li>
-</ul>
+- Imperial to metric conversion toggle on Recipe view
+- Additional filters for recipes on the Fridge view (time to make, more dietary restrictions, etc.)
+- Password change feature on Profile view
+- Create grocery list feature, taking into account items already in pantry
+- Favorite recipes function and view
 
 ## License
 This project is licensed under the MIT License. See the [License](./License) file for details.
