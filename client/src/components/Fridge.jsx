@@ -109,13 +109,14 @@ function Fridge() {
 
         <div className="equal-buttons">
             {/* Button to open AddIngredientForm modal */}
-            <button type="button" className="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#AddIngredientForm">Add Ingredient</button>
+            <button type="button" className="btn btn-outline-dark me-2" data-bs-toggle="modal" data-bs-target="#AddIngredientForm">Add Ingredient</button>
 
             {/* Button to go to RecipeGallery */}
-            <button type="button" className="btn btn-outline-light" onClick={handleMatchRecipes}>Match Recipes</button>
+            <button type="button" className="btn btn-outline-dark" onClick={handleMatchRecipes}>Match Recipes</button>
         </div>
 
         <div className="fridge-inner">
+
         {/* Using CategoryTable for display */}
         <CategoryTable 
             categoryTitle="Bread, Cereal, Rice, and Pasta" 

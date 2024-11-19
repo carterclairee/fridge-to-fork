@@ -1,9 +1,9 @@
 .fridge-outer {
-    border: 3px solid #003e3b; /* Dark border for the outer fridge */
+    border: 3px solid #eee9ca; /* Dark border for the outer fridge */
     border-radius: 10px 10px 0 0; /* Rounded corners at the top */
     padding: 20px; /* Space inside the outer fridge */
-    background-color:#004643 ; /* Dark background for the outer fridge */
-    color: white; /* White text */
+    background-color:#FAF4D3 ; /* Dark background for the outer fridge */
+    color: #004643; /* text */
     text-align: center; /* Center align text */
     margin: 20px auto; /* Center the fridge on the page */
     width: 100%;
@@ -50,8 +50,8 @@
 }
 
 .table-container {
-    border-top: 3px solid #E8E1B5; /* Top border above the heading */
-    border-bottom: 3px solid #E8E1B5; 
+    border-top: 3px solid #FAF4D3; /* Top border above the heading */
+    border-bottom: 3px solid #FAF4D3; 
     width: 100%; /* Make the container full width */
     padding: 0;
 }
@@ -62,22 +62,10 @@
 }
 
 .fridge-name {
-    color: #FAF4D3;
-}
-
-.recipes-link {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-decoration: none;
-    color: #F8F9FA;
-}
-
-.recipes-link:hover {
-    color: #000;
-    border-color: #f8f9fa;
+    color: #004643;
 }
 
 .fridge-background::before {
-    content: "";
     position: fixed;
     top: 0;
     left: 0;
@@ -86,6 +74,5 @@
     background-image: url('../../assets/megan-thomas-xMh_ww8HN_Q-unsplash.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0.3; /* Adjust opacity */
     z-index: -1; /* Ensures the image is behind the content */
   }
