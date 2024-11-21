@@ -81,8 +81,20 @@ As a team, we developed the idea for the app and decided on its features. My ind
 - Functionality and design of the Recipe Gallery, including connecting the Spoonacular API
 - Functionality and design of Recipe view
 
+## Demo
+<video src="readmeassets/Fridge-to-Fork-Demo.mp4" width="520" height="390" controls></video>
+
 ## Screenshots
-TO DO
+### Home Page
+![Home Page view](/readmeassets/Home-Page.png "Home Page")
+### Fridge
+![Fridge view](/readmeassets/Fridge.png "Fridge")
+### Add an Ingredient
+![Add an Ingredient view](/readmeassets/Add-Ingredient.png "Add Ingredient")
+### Recipe Gallery
+![Recipe Galler view](/readmeassets/Recipe-Gallery.png "Recipe Gallery")
+### Recipe Page
+![Recipe Page view](/readmeassets/Recipe-Page.png "Recipe Page")
 
 ## Future Features
 - Imperial to metric conversion toggle on Recipe view
