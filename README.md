@@ -81,9 +81,6 @@ As a team, we developed the idea for the app and decided on its features. My ind
 - Functionality and design of the Recipe Gallery, including connecting the Spoonacular API
 - Functionality and design of Recipe view
 
-## Demo
-<video src="readmeassets/Fridge-to-Fork-Demo.mp4" width="520" height="390" controls></video>
-
 ## Screenshots
 ### Home Page
 ![Home Page view](/readmeassets/Home-Page.png "Home Page")
