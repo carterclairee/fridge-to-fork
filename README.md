@@ -30,10 +30,10 @@ Fridge to Fork lets users keep track of food they already have and matches what'
 
 ## Installation
 1. Clone the repository:  
-  `git clone https://github.com/your-username/Claire-Fridge-to-Fork`
+  `git clone https://github.com/your-username/fridge-to-fork`
 
 2. Navigate to the project directory:  
-  `cd claire-fridge-to-fork`
+  `cd fridge-to-fork`
 
 3. Install server-related dependences, such as Express:  
   `npm install`
