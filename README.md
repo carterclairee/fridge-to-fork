@@ -93,6 +93,9 @@ As a team, we developed the idea for the app and decided on its features. My ind
 ### Recipe Page
 ![Recipe Page view](/readmeassets/Recipe-Page.png "Recipe Page")
 
+## See Fridge to Fork in Action
+[Watch the video on Loom](https://www.loom.com/share/cf95db1127d648b98285a35b499b6366?sid=c7d2976e-36b7-4835-a759-30d30664f4fd)
+
 ## Future Features
 - Imperial to metric conversion toggle on Recipe view
 - Additional filters for recipes on the Fridge view (time to make, more dietary restrictions, etc.)
