@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const db = require("../model/helper");
-const axios = require('axios');
 
 // For protecting endpoints
 var userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");

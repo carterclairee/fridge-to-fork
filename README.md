@@ -89,7 +89,7 @@ As a team, we developed the idea for the app and decided on its features. My ind
 ### Add an Ingredient
 ![Add an Ingredient view](/readmeassets/Add-Ingredient.png "Add Ingredient")
 ### Recipe Gallery
-![Recipe Galler view](/readmeassets/Recipe-Gallery.png "Recipe Gallery")
+![Recipe Gallery view](/readmeassets/Recipe-Gallery.png "Recipe Gallery")
 ### Recipe Page
 ![Recipe Page view](/readmeassets/Recipe-Page.png "Recipe Page")
 
